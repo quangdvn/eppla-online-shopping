@@ -11412,6 +11412,16 @@ h2 {
   background: transparent;
 }
 
+.button-yellow {
+  background: #ffed4a;
+  color: #212121 !important;
+  padding: 12px 40px;
+}
+
+.button-yellow:hover {
+  background: #ffe926;
+}
+
 .button-container {
   margin: 80px 0;
 }

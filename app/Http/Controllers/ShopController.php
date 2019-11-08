@@ -40,7 +40,7 @@ class ShopController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
-        $mightLikeProducts = Product::where('slug', '!=', $slug)->inRandomOrder()->take(4)->get();
+        $mightLikeProducts = Product::where('slug', '!=', $slug)->mightLike()->get();
 
         return view('detail', compact('product', 'mightLikeProducts'));
     }

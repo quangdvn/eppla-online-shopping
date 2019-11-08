@@ -5,13 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sitib VN</title>
+    <title>Eppla</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400,700" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
@@ -20,13 +24,13 @@
 <body>
     <header class="with-background">
         <div class="top-nav container">
-            <div class="logo">E-Commerce</div>
+            <div class="logo">Laravel commerce</div>
             <ul>
                 <li><a href="{{ route('shop.index') }}">Shop</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Blog</a></li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('cart.index') }}">
                         Cart <span class="cart-count"><span>3</span></span>
                     </a>
                 </li>
