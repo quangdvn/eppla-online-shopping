@@ -8,7 +8,7 @@
             <li><a href="#">About</a></li>
             <li><a href="#">Blog</a></li>
             <li>
-                <a href="#">
+                <a href="{{ route('cart.index') }}">
                     Cart <span class="cart-count"><span>3</span></span>
                 </a>
             </li>

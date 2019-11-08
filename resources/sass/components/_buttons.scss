@@ -33,6 +33,16 @@
     background: transparent;
 }
 
+.button-yellow {
+    background: $yellow;
+    color: $text-color !important;
+    padding: 12px 40px;
+
+    &:hover {
+        background: darken($yellow, 7%);
+    }
+}
+
 .button-container {
     margin: 80px 0;
 }

@@ -9,6 +9,10 @@ class Product extends Model
     public function setPrice()
     {
         return '$' . number_format($this->price / 100, 2);
-        // return money_format('$', $this->price / 100);
+    }
+
+    public function scopeMightLike($query)
+    {
+        return $query->inRandomOrder()->take(4);
     }
 }
