@@ -30,6 +30,12 @@ To get started, use your own Command Line:
     php artisan db:seed
     php artisan serve
     
+## For contributors
+
+Feel free to contribute to my project since its still very basic though
+
+Remember to create new branch and pull request if u want to develop this site !!!
+   
 ## Enjoy this project :))
 
 
