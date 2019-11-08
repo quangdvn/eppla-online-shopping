@@ -3,6 +3,9 @@
 /public/storage
 /storage/*.key
 /vendor
+/.vscode
+
+.editorconfig
 .env
 .phpunit.result.cache
 Homestead.json
