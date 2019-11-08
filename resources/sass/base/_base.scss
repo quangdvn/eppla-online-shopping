@@ -1,0 +1,49 @@
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none !important;
+    color: $text-color;
+
+    &:visited {
+        color: $text-color;
+    }
+
+    &:hover {
+        color: lighten($text-color, 40%);
+    }
+}
+
+.logo a {
+    color: $white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h1,
+h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 38px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+img {
+    max-width: 100%;
+}

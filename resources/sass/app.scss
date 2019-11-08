@@ -1,0 +1,39 @@
+// Variables
+@import 'abstract/variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Base
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utility';
+
+// Components
+@import 'components/breadcrumbs';
+@import 'components/buttons';
+@import 'components/section-description';
+@import 'components/sidebar';
+@import 'components/might-like';
+@import 'components/form';
+
+// Layout
+@import 'layout/header';
+@import 'layout/footer';
+
+// Pages
+@import 'pages/landing-page';
+@import 'pages/shop';
+@import 'pages/detail';
+@import 'pages/cart';
+@import 'pages/checkout';
+@import 'pages/thankyou';
+
+
+
+
+
+
+

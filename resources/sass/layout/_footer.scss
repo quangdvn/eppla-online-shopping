@@ -1,0 +1,20 @@
+footer {
+    background: $gray-background;
+    color: $white;
+    padding: 40px 0;
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            width: 30%;
+
+            a {
+                color: $white;
+            }
+        }
+    }
+}

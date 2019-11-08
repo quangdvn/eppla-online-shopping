@@ -1,0 +1,20 @@
+.featured-section {
+    padding: 50px 0;
+
+    .products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.blog-section {
+    background: $light-gray-background;
+    border-top: 1px solid $separator-color;
+    padding: 50px 0;
+
+    .blog-posts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); // 1fr 1fr 1fr
+        margin: 60px 0 60px;
+    }
+}
