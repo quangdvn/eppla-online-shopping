@@ -41,9 +41,9 @@ class ShopController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
-        $duplicateProduct = Cart::search(function ($cartItem) use ($product) {
-            $dupId = $product->id;
+        $dupId = $product->id;
 
+        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem,$rowId) use ($dupId) {
             return $cartItem->id == $dupId;
         });
 
