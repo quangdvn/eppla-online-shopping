@@ -11,12 +11,16 @@
 |
 */
 
+//* Routes for Landing Page
 Route::get('/', 'LandingPageController@index')->name('landing-page');
+
+//* Routes for Shop Page
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
 
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
+//* Routes for Cart Page
 Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Route::post('/cart', 'CartController@store')->name('cart.store');
@@ -25,10 +29,20 @@ Route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
 
 Route::post('/cart/moveToWishList/{id}', 'CartController@moveToWishList')->name('cart.moveToWishList');
 
+//* Routes for WishList Page
 Route::delete('/wishList/{id}', 'WishListController@destroy')->name('wishList.destroy');
 
 Route::post('/wishList/moveToCart/{id}', 'WishListController@moveToCart')->name('wishList.moveToCart');
 
+//* Routes for CheckOut Page
+Route::get('/checkout', 'CheckOutController@index')->name('checkout.index');
+
+Route::post('/checkout', 'CheckOutController@store')->name('checkout.store');
+
+//* Routes for Confirmation Page
+Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
+
+//* Routes for Testing
 Route::get('/empty', function () {
     Cart::instance('shopping')->destroy();
 });
@@ -36,11 +50,3 @@ Route::get('/empty', function () {
 Route::get('/emptywish', function () {
     Cart::instance('wishList')->destroy();
 });
-
-// Route::view('/product', 'product');
-
-// Route::view('/cart', 'cart');
-
-Route::view('/checkout', 'checkout');
-
-Route::view('/thankyou', 'thankyou');

@@ -40,8 +40,8 @@ h1.checkout-heading {
         }
 
         .checkout-table-row-right {
-            // width: 24%;
-            // padding-top: 10px;
+            width: 24%;
+            padding-top: 10px;
         }
 
         .checkout-table-img {
@@ -80,4 +80,35 @@ h1.checkout-heading {
             line-height: 2.2;
         }
     }
+}
+
+//* Used in Stripe Payment
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+
+    padding: 16px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #e9e9e9; 
+    transition: box-shadow 150ms ease;
+}
+
+// .StripeElement--focus {
+//     box-shadow: 0 1px 3px 0 #cfd7df;
+// }
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+#card-errors {
+    color: #fa755a;
 }
