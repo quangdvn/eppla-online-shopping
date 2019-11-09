@@ -21,6 +21,22 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Route::post('/cart', 'CartController@store')->name('cart.store');
 
+Route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
+
+Route::post('/cart/moveToWishList/{id}', 'CartController@moveToWishList')->name('cart.moveToWishList');
+
+Route::delete('/wishList/{id}', 'WishListController@destroy')->name('wishList.destroy');
+
+Route::post('/wishList/moveToCart/{id}', 'WishListController@moveToCart')->name('wishList.moveToCart');
+
+Route::get('/empty', function () {
+    Cart::instance('shopping')->destroy();
+});
+
+Route::get('/emptywish', function () {
+    Cart::instance('wishList')->destroy();
+});
+
 // Route::view('/product', 'product');
 
 // Route::view('/cart', 'cart');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
@@ -21,16 +21,6 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,47 +28,12 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Cart::add($request->id, $request->name, 1, $request->price)
+        Cart::instance('shopping')->add($request->id, $request->name, 1, $request->price)
                 ->associate('App\Models\Product');
 
         return redirect()
                 ->route('cart.index')
-                ->with('success_message', ('Item was added to your cart !'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+                ->with('success_message', 'Item was added to your cart !');
     }
 
     /**
@@ -89,6 +44,36 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::instance('shopping')->remove($id);
+
+        return back()->with('success_message', 'Item has been remove !!');
+    }
+
+    /**
+     * Move to Wish List to buy later
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function moveToWishList($id)
+    {
+        $product = Cart::instance('shopping')->get($id);
+
+        Cart::instance('shopping')->remove($id);
+
+        $duplicateProduct = Cart::instance('shopping')->search(function($cartItem,$rowId) use($id) {
+            return $rowId === $id;
+        });
+
+        if($duplicateProduct->isNotEmpty()) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already in WishList');
+        }
+
+        Cart::instance('wishList')->add($product->id, $product->name, 1, $product->price)
+                ->associate('App\Models\Product');
+
+        return redirect()
+                ->route('cart.index')
+                ->with('success_message', 'Item added to Wish List');
     }
 }

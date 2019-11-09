@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -40,9 +41,15 @@ class ShopController extends Controller
     {
         $product = Product::where('slug', $slug)->firstOrFail();
 
+        $duplicateProduct = Cart::search(function ($cartItem) use ($product) {
+            $dupId = $product->id;
+
+            return $cartItem->id == $dupId;
+        });
+
         $mightLikeProducts = Product::where('slug', '!=', $slug)->mightLike()->get();
 
-        return view('detail', compact('product', 'mightLikeProducts'));
+        return view('detail', compact('product', 'mightLikeProducts', 'duplicateProduct'));
     }
 
     /**

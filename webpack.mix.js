@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/responsive.scss', 'public/css')
     .sourceMaps()
-    .webpackConfig({ devtool: 'source-map' });
+    .webpackConfig({ devtool: 'source-map' })
+    .disableNotifications();
