@@ -11398,8 +11398,9 @@ h2 {
 }
 
 .button-primary {
+  border-style: none;
   background: #3EBFA4;
-  color: white !important;
+  color: #e9e9e9 !important;
   padding: 12px 40px;
 }
 
@@ -11408,11 +11409,13 @@ h2 {
 }
 
 .button-plain {
+  border-style: none;
   border: 1px solid #212121 !important;
   background: transparent;
 }
 
 .button-yellow {
+  border-style: none;
   background: #ffed4a;
   color: #212121 !important;
   padding: 12px 40px;

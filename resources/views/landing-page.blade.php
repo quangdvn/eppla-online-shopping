@@ -9,13 +9,13 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400,700" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
@@ -31,7 +31,13 @@
                 <li><a href="#">Blog</a></li>
                 <li>
                     <a href="{{ route('cart.index') }}">
-                        Cart <span class="cart-count"><span>3</span></span>
+                        Cart <span class="cart-count">
+                            @if (Cart::instance('default')->count() > 0)
+                            <span>
+                                {{Cart::instance('default')->count()}}
+                            </span>
+                            @endif
+                        </span>
                     </a>
                 </li>
             </ul>

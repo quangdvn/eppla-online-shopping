@@ -19,8 +19,9 @@
 }
 
 .button-primary {
+    border-style: none;
     background: $primary;
-    color: white !important;
+    color: $white !important;
     padding: 12px 40px;
 
     &:hover {
@@ -29,11 +30,13 @@
 }
 
 .button-plain {
+    border-style: none;
     border: 1px solid $text-color !important;
     background: transparent;
 }
 
 .button-yellow {
+    border-style: none;
     background: $yellow;
     color: $text-color !important;
     padding: 12px 40px;

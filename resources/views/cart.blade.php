@@ -18,47 +18,53 @@
 
 <div class="cart-section container">
     <div>
-        <h2>3 items in Shopping Cart</h2>
+        @include('partials.alert')
+
+        @if (Cart::instance('shopping')->count() > 0)
+
+        {{-- Current Cart has Items --}}
+
+        <h2>{{Cart::instance('shopping')->count()}} item(s) in Shopping Cart</h2>
 
         <div class="cart-table">
-            <div class="cart-table-row">
-                <div class="cart-table-row-left">
-                    <a href="#"><img src="/img/macbook-pro.png" alt="item" class="cart-table-img"></a>
-                    <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="#">MacBook Pro</a></div>
-                        <div class="cart-table-description">15 inch, 1TB SSD, 32GB RAM</div>
-                    </div>
-                </div>
-                <div class="cart-table-row-right">
-                    <div class="cart-table-actions">
-                        <a href="#">Remove</a> <br>
-                        <a href="#">Save for Later</a>
-                    </div>
-                    <div>
-                        <select class="quantity">
-                            <option selected="">1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div>$2499.99</div>
-                </div>
-            </div> <!-- end cart-table-row -->
+
+            @foreach (Cart::instance('shopping')->content() as $cartItem)
 
             <div class="cart-table-row">
                 <div class="cart-table-row-left">
-                    <a href="#"><img src="/img/macbook-pro.png" alt="item" class="cart-table-img"></a>
+                    <a href=" {{ route('shop.show',$cartItem->model->slug)}} ">
+                        <img src="{{ asset("img/products/{$cartItem->model->slug}.jpg") }}" alt="item"
+                            class="cart-table-img">
+                    </a>
                     <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="#">MacBook Pro</a></div>
-                        <div class="cart-table-description">15 inch, 1TB SSD, 32GB RAM</div>
+                        <div class="cart-table-item">
+                            <a href="{{ route('shop.show',$cartItem->model->slug) }}">
+                                {{ $cartItem->model->name }}
+                            </a>
+                        </div>
+                        <div class="cart-table-description">
+                            {{ $cartItem->model->details }}
+                        </div>
                     </div>
                 </div>
                 <div class="cart-table-row-right">
                     <div class="cart-table-actions">
-                        <a href="#">Remove</a> <br>
-                        <a href="#">Save for Later</a>
+                        <form action="{{ route('cart.destroy',$cartItem->rowId) }}" method="POST">
+
+                            @csrf
+
+                            @method('DELETE')
+
+                            <button type="submit" class="cart-options">Remove</button>
+
+                        </form>
+                        <form action="{{ route('cart.moveToWishList',$cartItem->rowId) }}" method="POST">
+
+                            @csrf
+
+                            <button type="submit" class="cart-options">Add to WishList</button>
+
+                        </form>
                     </div>
                     <div>
                         <select class="quantity">
@@ -69,35 +75,11 @@
                             <option>5</option>
                         </select>
                     </div>
-                    <div>$2499.99</div>
+                    <div>{{ $cartItem->model->setPrice() }}</div>
                 </div>
             </div> <!-- end cart-table-row -->
 
-            <div class="cart-table-row">
-                <div class="cart-table-row-left">
-                    <a href="#"><img src="/img/macbook-pro.png" alt="item" class="cart-table-img"></a>
-                    <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="#">MacBook Pro</a></div>
-                        <div class="cart-table-description">15 inch, 1TB SSD, 32GB RAM</div>
-                    </div>
-                </div>
-                <div class="cart-table-row-right">
-                    <div class="cart-table-actions">
-                        <a href="#">Remove</a> <br>
-                        <a href="#">Save for Later</a>
-                    </div>
-                    <div>
-                        <select class="quantity">
-                            <option selected="">1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div>$2499.99</div>
-                </div>
-            </div> <!-- end cart-table-row -->
+            @endforeach
 
         </div> <!-- end cart-table -->
 
@@ -124,9 +106,9 @@
                     <span class="cart-totals-total">Total</span>
                 </div>
                 <div class="cart-totals-subtotal">
-                    $7499.97 <br>
-                    $975.00 <br>
-                    <span class="cart-totals-total">$8474.97</span>
+                    {{ presentPrice(Cart::instance('shopping')->subtotal()) }} <br>
+                    {{ presentPrice(Cart::instance('shopping')->tax())}} <br>
+                    <span class="cart-totals-total">{{ presentPrice(Cart::instance('shopping')->total())}}</span>
                 </div>
             </div>
         </div> <!-- end cart-totals -->
@@ -136,46 +118,81 @@
             <a href="#" class="button-primary">Proceed to Checkout</a>
         </div>
 
-        <h2>2 items Saved For Later</h2>
+        {{-- Current Cart doesn't have Item --}}
+        @else
+
+        <div>
+            <h2>No items in Cart now !!</h2>
+            <div class="spacer"></div>
+            <a class="button-primary" href="{{ route('shop.index') }}">Go back and Shopping</a>
+            <div class="spacer"></div>
+        </div>
+
+        @endif
+
+        @if (Cart::instance('wishList')->count() > 0)
+
+        <h2>{{ Cart::instance('wishList')->count() }} item(s) Saved For Later</h2>
 
         <div class="saved-for-later cart-table">
+
+            @foreach (Cart::instance('wishList')->content() as $wishItem )
+
             <div class="cart-table-row">
                 <div class="cart-table-row-left">
-                    <a href="#"><img src="/img/macbook-pro.png" alt="item" class="cart-table-img"></a>
+                    <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                        <img src="{{ asset("img/products/{$wishItem->model->slug}.jpg") }} " alt="item"
+                            class="cart-table-img">
+                    </a>
                     <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="#">MacBook Pro</a></div>
-                        <div class="cart-table-description">15 inch, 1TB SSD, 32GB RAM</div>
+                        <div class="cart-table-item">
+                            <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                                {{ $wishItem->model->name }}
+                            </a>
+                        </div>
+                        <div class="cart-table-description">{{ $wishItem->model->details }}</div>
                     </div>
                 </div>
                 <div class="cart-table-row-right">
                     <div class="cart-table-actions">
-                        <a href="#">Remove</a> <br>
-                        <a href="#">Save for Later</a>
+                        <form action="{{ route('wishList.destroy',$wishItem->rowId) }}" method="POST">
+
+                            @csrf
+
+                            @method('DELETE')
+
+                            <button type="submit" class="cart-options">Remove</button>
+
+                        </form>
+                        <form action="{{ route('wishList.moveToCart',$wishItem->rowId) }}" method="POST">
+
+                            @csrf
+
+                            <button type="submit" class="cart-options">Add to Cart</button>
+
+                        </form>
                     </div>
 
-                    <div>$2499.99</div>
+                    <div>{{ $wishItem->model->setPrice() }}</div>
                 </div>
+
             </div> <!-- end cart-table-row -->
 
-            <div class="cart-table-row">
-                <div class="cart-table-row-left">
-                    <a href="#"><img src="/img/macbook-pro.png" alt="item" class="cart-table-img"></a>
-                    <div class="cart-item-details">
-                        <div class="cart-table-item"><a href="#">MacBook Pro</a></div>
-                        <div class="cart-table-description">15 inch, 1TB SSD, 32GB RAM</div>
-                    </div>
-                </div>
-                <div class="cart-table-row-right">
-                    <div class="cart-table-actions">
-                        <a href="#">Remove</a> <br>
-                        <a href="#">Save for Later</a>
-                    </div>
+            @endforeach
 
-                    <div>$2499.99</div>
-                </div>
-            </div> <!-- end cart-table-row -->
 
-        </div> <!-- end saved-for-later -->
+
+
+
+        </div> <!-- end wish-list -->
+
+
+        @else
+
+        <h2>You have no items in WishList !!</h2>
+
+        @endif
+
 
     </div>
 
