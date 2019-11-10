@@ -61,6 +61,12 @@ Please see all 3 folders: Migration, Factory and Seed and run these:
     php artisan migrate
     php artisan db:seed
     php artisan serve
+
+#### Step 7: Set up Stripe Payment
+
+My project uses Stripe (for now) as the main method for customers to check out order
+
+Feel free to contact me to be provided with STRIPE_KEY and STRIPE_SECRET
     
 #### Now you have completed starting up my project, just dive in and enjoy yourself !!!
     
