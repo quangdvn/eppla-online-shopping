@@ -43,7 +43,7 @@ class ShopController extends Controller
 
         $dupId = $product->id;
 
-        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem,$rowId) use ($dupId) {
+        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem, $rowId) use ($dupId) {
             return $cartItem->id == $dupId;
         });
 

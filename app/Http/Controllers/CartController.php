@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -18,6 +19,30 @@ class CartController extends Controller
         $mightLikeProducts = Product::mightLike()->get();
 
         return view('cart', compact('mightLikeProducts'));
+    }
+
+    /**
+     * Update a given Resourse
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|between:1,5'
+        ]);
+
+        if($validator->fails()) {
+            session()->flash('errors', collect(['Quantity must be between 1 and 5 !!']));
+
+            return response()->json(['success' => 'false'], 400);
+        }
+
+        Cart::instance('shopping')->update($id, $request->quantity);
+
+        session()->flash('success_message', 'Quantity has been updated !!');
+
+        return response()->json(['success' => 'true'], 200);
     }
 
     /**
@@ -68,11 +93,11 @@ class CartController extends Controller
 
         Cart::instance('shopping')->remove($id);
 
-        $duplicateProduct = Cart::instance('shopping')->search(function($cartItem,$rowId) use($id) {
+        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem, $rowId) use ($id) {
             return $rowId === $id;
         });
 
-        if($duplicateProduct->isNotEmpty()) {
+        if ($duplicateProduct->isNotEmpty()) {
             return redirect()->route('cart.index')->with('success_message', 'Item is already in WishList');
         }
 
