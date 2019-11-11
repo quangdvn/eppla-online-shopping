@@ -31,11 +31,11 @@ class WishListController extends Controller
 
         Cart::instance('wishList')->remove($id);
 
-        $duplicateProduct = Cart::instance('wishList')->search(function($cartItem,$rowId) use($id) {
+        $duplicateProduct = Cart::instance('wishList')->search(function ($cartItem, $rowId) use ($id) {
             return $rowId === $id;
         });
 
-        if($duplicateProduct->isNotEmpty()) {
+        if ($duplicateProduct->isNotEmpty()) {
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your Cart');
         }
 
