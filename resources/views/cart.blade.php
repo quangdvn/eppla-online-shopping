@@ -67,15 +67,16 @@
                         </form>
                     </div>
                     <div>
-                        <select class="quantity">
-                            <option selected="">1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <select class="quantity" data-id={{ $cartItem->rowId }}>
+
+                            @for ($i = 1; $i < 6; $i++) <option {{ $cartItem->qty == $i ? 'selected' : '' }}>
+                                {{ $i }}
+                                </option>
+                                @endfor
+
                         </select>
                     </div>
-                    <div>{{ $cartItem->model->setPrice() }}</div>
+                    <div>{{ presentPrice($cartItem->subtotal()) }}</div>
                 </div>
             </div> <!-- end cart-table-row -->
 
@@ -180,12 +181,7 @@
 
             @endforeach
 
-
-
-
-
         </div> <!-- end wish-list -->
-
 
         @else
 
@@ -200,5 +196,13 @@
 
 @include('partials.might-like')
 
+@endsection
+
+@section('extra-js')
+
+{{-- Load Axios to file --}}
+<script src="{{ asset('js/app.js')}}"></script>
+
+<script src="{{ asset('js/ajax.js') }}"></script>
 
 @endsection

@@ -157,6 +157,6 @@
 
 @section('extra-js')
 
-<script src="{{ asset('js/utils.js') }}"></script>
+<script src="{{ asset('js/stripe.js') }}"></script>
 
 @endsection
