@@ -11,7 +11,7 @@
     <div class="container">
         <a href="{{ route('landing-page') }}">Home</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <a href="{{route('shop.index')}}">Shop</a>
+        <a href="{{ route('shop.index') }}">Shop</a>
     </div>
 </div> <!-- end breadcrumbs -->
 
@@ -19,13 +19,16 @@
     <div class="sidebar">
         <h3>By Category</h3>
         <ul>
-            <li><a href="#">Laptops</a></li>
-            <li><a href="#">Desktops</a></li>
-            <li><a href="#">Mobile Phones</a></li>
-            <li><a href="#">Tablets</a></li>
-            <li><a href="#">TVs</a></li>
-            <li><a href="#">Digital Cameras</a></li>
-            <li><a href="#">Appliances</a></li>
+            @foreach ($categories as $category)
+
+            <li class="{{ setActive(request()->cat, $category->slug) }}">
+                <a href=" {{ route('shop.index', ['cat' => $category->slug]) }}">
+                    {{ $category->name }}
+                </a>
+            </li>
+
+            @endforeach
+
         </ul>
 
         <h3>By Price</h3>
@@ -37,10 +40,24 @@
     </div> <!-- end sidebar -->
 
     <div>
-        <h1 class="stylish-heading">Laptops</h1>
+        <div class="products-header">
+            <h1 class="stylish-heading">{{ $categoryName  }}</h1>
+            <div>
+                <strong class="font-weight-bold">Price:</strong>
+                <a class="{{ setActive(request()->sort, 'asc')  }}"
+                    href="{{ route('shop.index', ['cat' => request()->cat, 'sort' => 'asc']) }}">
+                    Low to High
+                </a> |
+                <a class="{{ setActive(request()->sort, 'desc')  }}"
+                    href="{{ route('shop.index', ['cat' => request()->cat, 'sort' => 'desc']) }}">
+                    High to Low
+                </a>
+            </div>
+        </div>
         <div class="products text-center">
 
-            @foreach ($products as $product)
+            @forelse ($products as $product)
+
             <div class="product">
                 <a href="{{ route('shop.show',$product->slug) }}">
                     <img src="{{ asset("img/products/{$product->slug}.jpg") }}" alt="product">
@@ -50,9 +67,17 @@
                 </a>
                 <div class="product-price">{{ $product->setPrice() }}</div>
             </div>
-            @endforeach
+
+            @empty
+
+            <div class="text-left">No product found !!</div>
+
+            @endforelse
 
         </div> <!-- end products -->
+        <div class="spacer"></div>
+
+        {{ $products->appends(request()->input())->links() }}
     </div>
 </div>
 

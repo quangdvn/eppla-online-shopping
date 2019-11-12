@@ -12,7 +12,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Laptops
+        //* Laptops
         for ($i = 1; $i <= 30; $i++) {
             Product::create([
                 'name' => 'Laptop ' . $i,
@@ -27,7 +27,7 @@ class ProductsTableSeeder extends Seeder
         $product = Product::findOrFail(1);
         $product->categories()->attach(2);
 
-        // Desktops
+        //* Desktops
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'Desktop ' . $i,
@@ -38,7 +38,7 @@ class ProductsTableSeeder extends Seeder
             ])->categories()->attach(2);
         }
 
-        // Phones
+        //* Phones
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'Phone ' . $i,
@@ -49,7 +49,7 @@ class ProductsTableSeeder extends Seeder
             ])->categories()->attach(3);
         }
 
-        // Tablets
+        //* Tablets
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'Tablet ' . $i,
@@ -60,7 +60,7 @@ class ProductsTableSeeder extends Seeder
             ])->categories()->attach(4);
         }
 
-        // TVs
+        //* TVs
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'TV ' . $i,
@@ -71,7 +71,7 @@ class ProductsTableSeeder extends Seeder
             ])->categories()->attach(5);
         }
 
-        // Cameras
+        //* Cameras
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'Camera ' . $i,
@@ -82,7 +82,7 @@ class ProductsTableSeeder extends Seeder
             ])->categories()->attach(6);
         }
 
-        // Appliances
+        //* Appliances
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
                 'name' => 'Appliance ' . $i,
@@ -92,5 +92,10 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Lorem ' . $i . ' ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!',
             ])->categories()->attach(7);
         }
+
+        //* Select random products to set as featured
+        Product::whereIn('id', [1, 12, 22, 31, 41, 43, 47, 51, 53, 61, 69, 73, 80])
+                ->update(['featured' => true]);
+
     }
 }
