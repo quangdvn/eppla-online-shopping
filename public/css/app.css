@@ -11696,6 +11696,14 @@ footer .footer-content ul a {
   margin: 80px auto 80px;
 }
 
+.products-section .sidebar li.active {
+  font-weight: 550;
+}
+
+.products-section .sidebar li.active a {
+  color: #f6993f;
+}
+
 .products-section .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -11703,6 +11711,18 @@ footer .footer-content ul a {
 
 .products-section .products .product-price {
   color: #919191;
+}
+
+.products-header {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.products-header a.active {
+  font-weight: 500;
+  color: #e3342f;
 }
 
 .product-section {
@@ -11814,41 +11834,6 @@ footer .footer-content ul a {
   color: #6e6e6e;
 }
 
-.cart-section .have-code {
-  display: block;
-  margin: 14px 0;
-}
-
-.cart-section .have-code-container {
-  border: 1px solid #919191;
-  padding: 16px;
-  width: 50%;
-}
-
-.cart-section .have-code-container form {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-}
-
-.cart-section .have-code-container input[type=text] {
-  width: 70%;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.cart-section .have-code-container input[type=submit] {
-  background: white;
-  border: 1px solid #919191;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.cart-section .have-code-container input[type=submit]:hover {
-  background: #212121;
-}
-
 .cart-section .cart-totals {
   margin: 30px 0;
   padding: 20px;
@@ -11934,11 +11919,6 @@ h1.checkout-heading {
   width: 75%;
 }
 
-.checkout-section .checkout-table-row .checkout-table-row-right {
-  width: 24%;
-  padding-top: 10px;
-}
-
 .checkout-section .checkout-table-row .checkout-table-img {
   max-height: 60px;
 }
@@ -11975,6 +11955,41 @@ h1.checkout-heading {
   font-weight: bold;
   font-size: 22px;
   line-height: 2.2;
+}
+
+.have-code {
+  display: block;
+  margin: 14px 0;
+}
+
+.have-code-container {
+  border: 1px solid #919191;
+  padding: 16px;
+  width: 100%;
+}
+
+.have-code-container form {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.have-code-container input[type=text] {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.have-code-container input[type=submit] {
+  background: white;
+  border: 1px solid #919191;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.have-code-container input[type=submit]:hover {
+  background: #212121;
 }
 
 /**

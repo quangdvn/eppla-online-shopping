@@ -10,11 +10,11 @@
 
 <div class="breadcrumbs">
     <div class="container">
-        <a href="#">Home</a>
+        <a href="{{ route('landing-page') }}">Home</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>Shop</span>
+        <a href="{{ route('shop.index') }}">Shop</a>
         <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>{{$product->name}}</span>
+        <span>{{ $product->name }}</span>
     </div>
 </div> <!-- end breadcrumbs -->
 

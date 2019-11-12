@@ -99,8 +99,6 @@
             </form>
         </div>
 
-
-
         <div class="checkout-table-container">
             <h2>Your Order</h2>
 
@@ -148,6 +146,14 @@
                 </div>
             </div> <!-- end checkout-totals -->
 
+            <a href="#" class="have-code font-weight-bold">Have a Code?</a>
+
+            <div class="have-code-container">
+                <form action="#">
+                    <input type="text">
+                    <button type="submit" class="button button-plain">Apply</button>
+                </form>
+            </div> <!-- end have-code-container -->
         </div>
 
     </div> <!-- end checkout-section -->

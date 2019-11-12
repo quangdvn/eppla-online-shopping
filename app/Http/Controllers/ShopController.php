@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -15,9 +16,46 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(12)->get();
+        $pagination = 9;
+        $categories = Category::all();
 
-        return view('shop', compact('products'));
+        //* When there is a queryString attach onto the URL
+        if (request()->cat) {
+            //* Use with() to prevent N+1 Problem
+            $products = Product::with('categories')
+                        ->whereHas('categories', function ($query) {
+                            $query->where('slug', request()->cat);
+                        });
+            $categoryName = optional($categories->where('slug', request()->cat)
+                                    ->first())
+                                    ->name;
+            if (!$categoryName) {
+                $categoryName = 'Not Found';
+            }
+        } else {
+            $products = Product::where('featured', true)
+                                    ->take(12)
+                                    ->inRandomOrder();
+
+            $categoryName = 'Featured Products';
+        }
+
+        //* After retriving the required products
+        //* sort by price if a queryString exists
+
+        if (request()->sort == 'asc') {
+            $products = $products
+                        ->orderBy('price', 'asc')
+                        ->paginate($pagination);
+        } elseif (request()->sort == 'desc') {
+            $products = $products
+                        ->orderBy('price', 'desc')
+                        ->paginate($pagination);
+        } else {
+            $products = $products->paginate($pagination);
+        }
+
+        return view('shop', compact('products', 'categories', 'categoryName'));
     }
 
     /**
