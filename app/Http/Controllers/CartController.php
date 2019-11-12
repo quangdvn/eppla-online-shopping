@@ -18,7 +18,14 @@ class CartController extends Controller
     {
         $mightLikeProducts = Product::mightLike()->get();
 
-        return view('cart', compact('mightLikeProducts'));
+        return view('cart')->with([
+            'mightLikeProducts' => $mightLikeProducts,
+            'taxConst' => calculateTotal()->get('taxConst'),
+            'discount' => calculateTotal()->get('discount'),
+            'newSubtotal' => calculateTotal()->get('newSubtotal'),
+            'newTax' => calculateTotal()->get('newTax'),
+            'newTotal' => calculateTotal()->get('newTotal')
+        ]);
     }
 
     /**
@@ -32,7 +39,7 @@ class CartController extends Controller
             'quantity' => 'required|numeric|between:1,5'
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             session()->flash('errors', collect(['Quantity must be between 1 and 5 !!']));
 
             return response()->json(['success' => 'false'], 400);

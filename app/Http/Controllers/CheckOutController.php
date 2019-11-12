@@ -16,7 +16,17 @@ class CheckOutController extends Controller
      */
     public function index()
     {
-        return view('checkout');
+        if (Cart::instance('shopping')->count() == 0) {
+            return redirect()->route('landing-page');
+        }
+
+        return view('checkout')->with([
+            'taxConst' => calculateTotal()->get('taxConst'),
+            'discount' => calculateTotal()->get('discount'),
+            'newSubtotal' => calculateTotal()->get('newSubtotal'),
+            'newTax' => calculateTotal()->get('newTax'),
+            'newTotal' => calculateTotal()->get('newTotal')
+        ]);
     }
 
     /**
@@ -34,10 +44,10 @@ class CheckOutController extends Controller
             })
             ->values()
             ->toJson();
-
+            
         try {
             $charge = Stripe::charges()->create([
-                'amount' => Cart::instance('shopping')->total() / 100,
+                'amount' => calculateTotal()->get('newTotal') / 100,
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
                 'description' => 'Order',
@@ -45,12 +55,15 @@ class CheckOutController extends Controller
                 'metadata' => [
                     // change to OrderID after using Real MySQL Database
                     'contents' => $paymentContent,
-                    'quantity' => Cart::instance('shopping')->count()
+                    'quantity' => Cart::instance('shopping')->count(),
+                    'discount' => collect(session()->get('coupon'))->toJson()
                 ]
             ]);
 
             //* Successful charge
             Cart::instance('shopping')->destroy();
+
+            session()->forget('coupon');
 
             return redirect()
                     ->route('confirmation.index')

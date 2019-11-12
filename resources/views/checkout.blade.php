@@ -129,31 +129,30 @@
             <div class="checkout-totals">
                 <div class="checkout-totals-left">
                     Subtotal <br>
-                    {{-- Discount (10OFF - 10%) <br> --}}
-                    Tax <br>
+                    Tax ({{ $taxConst * 100 }}%) <br>
                     <span class="checkout-totals-total">Total</span>
 
                 </div>
 
                 <div class="checkout-totals-right">
-                    {{ presentPrice(Cart::instance('shopping')->subtotal()) }} <br>
-                    {{-- -$750.00 <br> --}}
-                    {{ presentPrice(Cart::instance('shopping')->tax()) }} <br>
+                    {{ presentPrice($newSubtotal) }} <br>
+
+                    {{ presentPrice($newTax) }} <br>
+
                     <span class="checkout-totals-total">
-                        {{ presentPrice(Cart::instance('shopping')->total()) }}
+                        {{ presentPrice($newTotal) }}
                     </span>
 
                 </div>
             </div> <!-- end checkout-totals -->
 
-            <a href="#" class="have-code font-weight-bold">Have a Code?</a>
+            <div class="checkout-back">
+                <div class="spacer"></div>
+                <a class="font-weight-bold" href="{{ route('cart.index') }}"> >> Back to Cart </a>
+                <div class="spacer"></div>
+                <a class="font-weight-bold" href="{{ route('shop.index') }}"> >> Back to Shop </a>
+            </div>
 
-            <div class="have-code-container">
-                <form action="#">
-                    <input type="text">
-                    <button type="submit" class="button button-plain">Apply</button>
-                </form>
-            </div> <!-- end have-code-container -->
         </div>
 
     </div> <!-- end checkout-section -->

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\CartUpdatedListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,6 +19,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'cart.added' => [
+            CartUpdatedListener::class
+        ],
+        'cart.updated' => [
+            CartUpdatedListener::class
+        ],
+        'cart.removed' => [
+            CartUpdatedListener::class
+        ]
     ];
 
     /**

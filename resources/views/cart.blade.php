@@ -84,6 +84,22 @@
 
         </div> <!-- end cart-table -->
 
+        @if (!session()->has('coupon'))
+
+        <a href="#couponCode" class="have-code font-weight-bold">Have a Code?</a>
+        <div class="have-code-container">
+            <form action="{{ route('coupon.store') }}" method="POST">
+
+                @csrf
+
+                <input type="text" name="couponCode" id="couponCode">
+                <button type="submit" class="button button-plain">Apply</button>
+
+            </form>
+        </div> <!-- end have-code-container -->
+
+        @endif
+
         <div class="cart-totals">
             <div class="cart-totals-left">
                 Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t feel like
@@ -91,96 +107,127 @@
             </div>
 
             <div class="cart-totals-right">
-                <div>
+                <div style="text-align:left;">
                     Subtotal <br>
-                    Tax <br>
+
+                    @if (session()->has('coupon'))
+
+                    Discount ({{ session()->get('coupon')['type'] }})
+                    <form action="{{ route('coupon.destroy') }}" method="POST" style="display:inline">
+
+                        @csrf
+
+                        @method('DELETE')
+
+                        <button type="submit" style="font-size:14px;">Remove</button>
+
+                    </form>
+                    <br>
+                    <hr>
+                    New Subtotal
+                    <br>
+
+                    @endif
+
+                    Tax ({{ $taxConst * 100 }}%) <br>
                     <span class="cart-totals-total">Total</span>
                 </div>
                 <div class="cart-totals-subtotal">
                     {{ presentPrice(Cart::instance('shopping')->subtotal()) }} <br>
-                    {{ presentPrice(Cart::instance('shopping')->tax())}} <br>
-                    <span class="cart-totals-total">{{ presentPrice(Cart::instance('shopping')->total())}}</span>
+
+                    @if (session()->has('coupon'))
+
+                    -{{ presentPrice($discount) }} <br>
+                    <hr>
+                    {{ presentPrice($newSubtotal) }} <br>
+
+                    @endif
+
+                    {{ presentPrice($newTax) }} <br>
+                    <span class="cart-totals-total">
+                        {{ presentPrice($newTotal)}}
+                    </span>
                 </div>
             </div>
         </div> <!-- end cart-totals -->
 
-        <div class="cart-buttons">
-            <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
-            <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
-        </div>
-
-        {{-- Current Cart doesn't have Item --}}
-        @else
-
-        <div>
-            <h2>No items in Cart now !!</h2>
-            <div class="spacer"></div>
-            <a class="button-primary" href="{{ route('shop.index') }}">Go back and Shopping</a>
-            <div class="spacer"></div>
-        </div>
-
-        @endif
-
-        @if (Cart::instance('wishList')->count() > 0)
-
-        <h2>{{ Cart::instance('wishList')->count() }} item(s) Saved For Later</h2>
-
-        <div class="saved-for-later cart-table">
-
-            @foreach (Cart::instance('wishList')->content() as $wishItem )
-
-            <div class="cart-table-row">
-                <div class="cart-table-row-left">
-                    <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
-                        <img src="{{ asset("img/products/{$wishItem->model->slug}.jpg") }} " alt="item"
-                            class="cart-table-img">
-                    </a>
-                    <div class="cart-item-details">
-                        <div class="cart-table-item">
-                            <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
-                                {{ $wishItem->model->name }}
-                            </a>
-                        </div>
-                        <div class="cart-table-description">{{ $wishItem->model->details }}</div>
-                    </div>
-                </div>
-                <div class="cart-table-row-right">
-                    <div class="cart-table-actions">
-                        <form action="{{ route('wishList.destroy',$wishItem->rowId) }}" method="POST">
-
-                            @csrf
-
-                            @method('DELETE')
-
-                            <button type="submit" class="cart-options">Remove</button>
-
-                        </form>
-                        <form action="{{ route('wishList.moveToCart',$wishItem->rowId) }}" method="POST">
-
-                            @csrf
-
-                            <button type="submit" class="cart-options">Add to Cart</button>
-
-                        </form>
-                    </div>
-
-                    <div>{{ $wishItem->model->setPrice() }}</div>
-                </div>
-
-            </div> <!-- end cart-table-row -->
-
-            @endforeach
-
-        </div> <!-- end wish-list -->
-
-        @else
-
-        <h2>You have no items in WishList !!</h2>
-
-        @endif
-
-
+    <div class="cart-buttons">
+        <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
+        <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
     </div>
+
+    {{-- Current Cart doesn't have Item --}}
+    @else
+
+    <div>
+        <h2>No items in Cart now !!</h2>
+        <div class="spacer"></div>
+        <a class="button-primary" href="{{ route('shop.index') }}">Go back and Shopping</a>
+        <div class="spacer"></div>
+    </div>
+
+    @endif
+
+    @if (Cart::instance('wishList')->count() > 0)
+
+    <h2>{{ Cart::instance('wishList')->count() }} item(s) Saved For Later</h2>
+
+    <div class="saved-for-later cart-table">
+
+        @foreach (Cart::instance('wishList')->content() as $wishItem )
+
+        <div class="cart-table-row">
+            <div class="cart-table-row-left">
+                <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                    <img src="{{ asset("img/products/{$wishItem->model->slug}.jpg") }} " alt="item"
+                        class="cart-table-img">
+                </a>
+                <div class="cart-item-details">
+                    <div class="cart-table-item">
+                        <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                            {{ $wishItem->model->name }}
+                        </a>
+                    </div>
+                    <div class="cart-table-description">{{ $wishItem->model->details }}</div>
+                </div>
+            </div>
+            <div class="cart-table-row-right">
+                <div class="cart-table-actions">
+                    <form action="{{ route('wishList.destroy',$wishItem->rowId) }}" method="POST">
+
+                        @csrf
+
+                        @method('DELETE')
+
+                        <button type="submit" class="cart-options">Remove</button>
+
+                    </form>
+                    <form action="{{ route('wishList.moveToCart',$wishItem->rowId) }}" method="POST">
+
+                        @csrf
+
+                        <button type="submit" class="cart-options">Add to Cart</button>
+
+                    </form>
+                </div>
+
+                <div>{{ $wishItem->model->setPrice() }}</div>
+            </div>
+
+        </div> <!-- end cart-table-row -->
+
+        @endforeach
+
+    </div> <!-- end wish-list -->
+
+    @else
+
+    <h2>You have no items in WishList !!</h2>
+
+    @endif
+
+
+</div>
 
 </div> <!-- end cart-section -->
 

@@ -74,39 +74,11 @@ h1.checkout-heading {
             line-height: 2.2;
         }
     }
-}
 
-//* Discount and coupons section
-.have-code {
-    display: block;
-    margin: 14px 0;
-}
-
-.have-code-container {
-    border: 1px solid $text-color-light;
-    padding: 16px;
-    width: 100%;
-
-    form {
+    .checkout-back {
         display: flex;
-        justify-content: space-between;
-    }
-
-    input[type='text'] {
-        width: 70%;
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    input[type='submit'] {
-        background: white;
-        border: 1px solid $text-color-light;
-        padding-top: 8px;
-        padding-bottom: 8px;
-
-        &:hover {
-            background: $text-color;
-        }
+        margin: 15px 0;
+        justify-content: space-evenly;
     }
 }
 
@@ -117,11 +89,10 @@ h1.checkout-heading {
  * how you can use CSS to style your Element's container.
  */
 .StripeElement {
-
     padding: 16px 16px;
     border: 1px solid transparent;
     border-radius: 4px;
-    background-color: #e9e9e9; 
+    background-color: #e9e9e9;
     transition: box-shadow 150ms ease;
 }
 
