@@ -11845,7 +11845,7 @@ footer .footer-content ul a {
 }
 
 .cart-section .cart-totals .cart-totals-left {
-  width: 50%;
+  width: 35%;
 }
 
 .cart-section .cart-totals .cart-totals-right {
@@ -11853,7 +11853,7 @@ footer .footer-content ul a {
   display: flex;
   -webkit-box-pack: justify;
           justify-content: space-between;
-  width: 25%;
+  width: 50%;
   text-align: right;
 }
 
@@ -11869,6 +11869,43 @@ footer .footer-content ul a {
   -webkit-box-pack: justify;
           justify-content: space-between;
   margin-bottom: 40px;
+}
+
+.have-code {
+  display: block;
+  margin: 14px 0;
+  text-align: right;
+}
+
+.have-code-container {
+  border: 1px solid #919191;
+  padding: 16px;
+  width: 60%;
+  margin-left: auto;
+}
+
+.have-code-container form {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.have-code-container input[type=text] {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.have-code-container input[type=submit] {
+  background: white;
+  border: 1px solid #919191;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.have-code-container input[type=submit]:hover {
+  background: #212121;
 }
 
 h1.checkout-heading {
@@ -11957,39 +11994,12 @@ h1.checkout-heading {
   line-height: 2.2;
 }
 
-.have-code {
-  display: block;
-  margin: 14px 0;
-}
-
-.have-code-container {
-  border: 1px solid #919191;
-  padding: 16px;
-  width: 100%;
-}
-
-.have-code-container form {
+.checkout-section .checkout-back {
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-}
-
-.have-code-container input[type=text] {
-  width: 70%;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.have-code-container input[type=submit] {
-  background: white;
-  border: 1px solid #919191;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.have-code-container input[type=submit]:hover {
-  background: #212121;
+  margin: 15px 0;
+  -webkit-box-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 /**

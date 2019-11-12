@@ -44,11 +44,18 @@ Route::post('/checkout', 'CheckOutController@store')->name('checkout.store');
 //* Routes for Confirmation Page
 Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
 
+//* Route for Coupon
+Route::post('/coupon', 'CouponController@store')->name('coupon.store');
+
+Route::delete('/coupon', 'CouponController@destroy')->name('coupon.destroy');
+
 //* Routes for Testing
 Route::get('/empty', function () {
     Cart::instance('shopping')->destroy();
+    session()->forget('coupon');
 });
 
 Route::get('/emptywish', function () {
     Cart::instance('wishList')->destroy();
+    session()->forget('coupon');
 });

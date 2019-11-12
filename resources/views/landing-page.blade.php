@@ -54,7 +54,7 @@
             </div> <!-- end hero-copy -->
 
             <div class="hero-image">
-                <img src="img/eppla-logo.png" alt="hero image">
+                <img src="img/3rd-eppla-logo.png" alt="hero image">
             </div>
         </div> <!-- end hero -->
     </header>

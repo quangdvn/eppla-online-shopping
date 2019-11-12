@@ -8,9 +8,6 @@
         margin-bottom: 30px;
     }
 
-    // .cart-table {
-    // }
-
     .cart-table-row {
         display: flex;
         justify-content: space-between;
@@ -52,7 +49,7 @@
         .cart-table-description {
             color: $text-color-light;
         }
-        
+
         .cart-options {
             color: $text-color;
             background: transparent;
@@ -74,13 +71,13 @@
         background: $light-gray-background;
 
         .cart-totals-left {
-            width: 50%;
+            width: 35%;
         }
 
         .cart-totals-right {
             display: flex;
             justify-content: space-between;
-            width: 25%;
+            width: 50%;
             text-align: right;
         }
 
@@ -95,5 +92,41 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 40px;
+    }
+}
+
+//* Discount and coupons section
+.have-code {
+    display: block;
+    margin: 14px 0;
+    text-align: right;
+}
+
+.have-code-container {
+    border: 1px solid $text-color-light;
+    padding: 16px;
+    width: 60%;
+    margin-left: auto;
+
+    form {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input[type="text"] {
+        width: 70%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    input[type="submit"] {
+        background: white;
+        border: 1px solid $text-color-light;
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+        &:hover {
+            background: $text-color;
+        }
     }
 }
