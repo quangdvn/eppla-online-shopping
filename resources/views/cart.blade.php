@@ -33,7 +33,7 @@
             <div class="cart-table-row">
                 <div class="cart-table-row-left">
                     <a href=" {{ route('shop.show',$cartItem->model->slug)}} ">
-                        <img src="{{ asset("img/products/{$cartItem->model->slug}.jpg") }}" alt="item"
+                        <img src="{{ productImage($cartItem->image) }}" alt="item"
                             class="cart-table-img">
                     </a>
                     <div class="cart-item-details">
@@ -179,7 +179,7 @@
         <div class="cart-table-row">
             <div class="cart-table-row-left">
                 <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
-                    <img src="{{ asset("img/products/{$wishItem->model->slug}.jpg") }} " alt="item"
+                    <img src="{{ productImage($wishItem->image) }} " alt="item"
                         class="cart-table-img">
                 </a>
                 <div class="cart-item-details">

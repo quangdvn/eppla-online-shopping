@@ -59,3 +59,8 @@ Route::get('/emptywish', function () {
     Cart::instance('wishList')->destroy();
     session()->forget('coupon');
 });
+
+//* Routes for Voyager
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

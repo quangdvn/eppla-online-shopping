@@ -44,7 +44,7 @@ class CheckOutController extends Controller
             })
             ->values()
             ->toJson();
-            
+
         try {
             $charge = Stripe::charges()->create([
                 'amount' => calculateTotal()->get('newTotal') / 100,

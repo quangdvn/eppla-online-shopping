@@ -27,7 +27,7 @@ class CreateCategoryProductPivotTable extends Migration
 
             $table->foreign('category_id')
                 ->references('id')
-                ->on('categories')
+                ->on('category')
                 ->onDelete('cascade');
         });
     }

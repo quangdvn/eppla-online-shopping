@@ -17,36 +17,24 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 </head>
 
 <body>
     <header class="with-background">
         <div class="top-nav container">
-            <div class="logo">Laravel commerce</div>
-            <ul>
-                <li><a href="{{ route('shop.index') }}">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li>
-                    <a href="{{ route('cart.index') }}">
-                        Cart <span class="cart-count">
-                            @if (Cart::instance('shopping')->count() > 0)
-                            <span>
-                                {{ Cart::instance('shopping')->count() }}
-                            </span>
-                            @endif
-                        </span>
-                    </a>
-                </li>
-            </ul>
+            <div class="logo">Eppla E-Commerce</div>
+
+            {{ menu('main','partials.menus.main') }}
+
         </div> <!-- end top-nav -->
 
         <div class="hero container">
             <div class="hero-copy">
-                <h1>E-Commerce</h1>
-                <p>A practical example of using CSS Grid for a typical website layout.</p>
+                <h1>Eppla</h1>
+                <p>An E-Commerce includes multiple products, categories, a shopping cart and a checkout system with
+                    Stripe</p>
                 <div class="hero-buttons">
                     <a href="#" class="button button-white">Button 1</a>
                     <a href="#" class="button button-white">Button 2</a>
@@ -78,7 +66,7 @@
                 @foreach ($products as $product)
                 <div class="product">
                     <a href="{{ route('shop.show',$product->slug) }}">
-                        <img src="{{asset("img/products/{$product->slug}.jpg")}}" alt="product">
+                        <img src="{{ productImage($product->image) }}" alt="product">
                     </a>
                     <a href="{{ route('shop.show',$product->slug) }}">
                         <div class="product-name">{{$product->name}}</div>

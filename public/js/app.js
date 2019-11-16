@@ -49389,9 +49389,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! H:\Laravel\Laravel Project\e-commerce\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! H:\Laravel\Laravel Project\e-commerce\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\e-commerce\resources\sass\responsive.scss */"./resources/sass/responsive.scss");
+__webpack_require__(/*! H:\Laravel\Laravel Project\eppla-online-shopping\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! H:\Laravel\Laravel Project\eppla-online-shopping\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\eppla-online-shopping\resources\sass\responsive.scss */"./resources/sass/responsive.scss");
 
 
 /***/ })
