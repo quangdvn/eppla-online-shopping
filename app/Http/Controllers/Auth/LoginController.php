@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+    * Show the application's login form.
+    * Override to parent function
+    * to redirect after login to the previous page
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function showLoginForm()
+    {
+        session()->put('prev_url', url()->previous());
+
+        return view('auth.login');
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     * Set path to redirect from login
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        return str_replace(url('/'), '', session()->get('prev_url', '/'));
     }
 }

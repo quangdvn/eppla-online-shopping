@@ -30,6 +30,7 @@
 
 
 <body class="@yield('body-class', '')">
+    
     @include('partials.nav')
 
     @yield('content')

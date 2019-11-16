@@ -1,10 +1,22 @@
 <header>
     <div class="top-nav container">
-        <div class="logo"><a href="/">Eppla E-Commerce</a></div>
-        @if (!request()->is('checkout'))
+        <div class="top-nav-left">
+            <div class="logo">
+                <a href="/">Eppla</a>
+            </div>
+            @if (!request()->is('checkout'))
 
-        {{ menu('main','partials.menus.main') }}
+            @include('partials.menus.top-nav-left')
 
-        @endif
+            @endif
+        </div>
+        <div class="top-nav-right">
+            @if (!request()->is('checkout'))
+
+            @include('partials.menus.top-nav-right')
+
+            @endif
+
+        </div>
     </div> <!-- end top-nav -->
 </header>
