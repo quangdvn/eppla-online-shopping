@@ -52,7 +52,20 @@ Now check the .env file again, you will see that it now has a long random string
     
 Fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options in .env file which matches the credentials of the database you just created. This will allow you to run migrations and seed the database in the next step
 
-#### Step 6: Create your own database
+#### Step 6 (Optional): Set up your own Voyager
+
+Voyager is a packet to create Admin dashboard for your app. Here I use Voyager to create a Site for Admin and Seller to manage (CRUD) their own Products
+
+I have already attach Voyager package in composer.json, to start with Voyager, run: 
+    
+    php artisan voyager:install --with-dummy (To create some dummy data for Admin Site)
+
+You can't keep up with my setting for Voyager, since its not allowed to push up Voyager setting on Github,
+So you have to do it on your own :((
+
+Feel free to read Voyager docs here: https://voyager-docs.devdojo.com
+
+#### Step 7: Create your own database
 
 I 've already prepared some seed files for a new MySQL Database in 'database' folder
 
@@ -62,7 +75,7 @@ Please see all 3 folders: Migration, Factory and Seed and run these:
     php artisan db:seed
     php artisan serve
 
-#### Step 7: Set up Stripe Payment
+#### Step 8: Set up Stripe Payment
 
 My project uses Stripe (for now) as the main method for customers to check out order
 
