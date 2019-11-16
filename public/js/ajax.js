@@ -900,7 +900,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\e-commerce\resources\js\utils\ajax.js */"./resources/js/utils/ajax.js");
+module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\eppla-online-shopping\resources\js\utils\ajax.js */"./resources/js/utils/ajax.js");
 
 
 /***/ })

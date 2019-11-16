@@ -179,7 +179,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\e-commerce\resources\js\utils\stripe.js */"./resources/js/utils/stripe.js");
+module.exports = __webpack_require__(/*! H:\Laravel\Laravel Project\eppla-online-shopping\resources\js\utils\stripe.js */"./resources/js/utils/stripe.js");
 
 
 /***/ })

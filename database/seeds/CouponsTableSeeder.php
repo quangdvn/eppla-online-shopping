@@ -17,13 +17,13 @@ class CouponsTableSeeder extends Seeder
             'type' => 'fixed',
             'value' => 3000,
         ]);
-        
+
         Coupon::create([
             'code' => 'DEF456',
             'type' => 'fixed',
             'value' => 2000,
         ]);
-        
+
         Coupon::create([
             'code' => 'GHI789',
             'type' => 'percent',
