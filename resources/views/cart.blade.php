@@ -23,8 +23,21 @@
         @if (Cart::instance('shopping')->count() > 0)
 
         {{-- Current Cart has Items --}}
+        <div class="cart-header">
+            <h2>{{Cart::instance('shopping')->count()}} item(s) in Shopping Cart</h2>
+            <form id="remove-all" action="{{ route('cart.destroyall') }}" method="POST">
 
-        <h2>{{Cart::instance('shopping')->count()}} item(s) in Shopping Cart</h2>
+                @csrf
+
+                @method('DELETE')
+                
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash fa-fw"></i>Clear Your Cart
+                </button>
+
+            </form>
+        </div>
+
 
         <div class="cart-table">
 
@@ -33,8 +46,7 @@
             <div class="cart-table-row">
                 <div class="cart-table-row-left">
                     <a href=" {{ route('shop.show',$cartItem->model->slug)}} ">
-                        <img src="{{ productImage($cartItem->image) }}" alt="item"
-                            class="cart-table-img">
+                        <img src="{{ productImage($cartItem->model->image) }}" alt="item" class="cart-table-img">
                     </a>
                     <div class="cart-item-details">
                         <div class="cart-table-item">
@@ -151,83 +163,82 @@
             </div>
         </div> <!-- end cart-totals -->
 
-    <div class="cart-buttons">
-        <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
-        <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
-    </div>
+        <div class="cart-buttons">
+            <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
+            <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
+        </div>
 
-    {{-- Current Cart doesn't have Item --}}
-    @else
+        {{-- Current Cart doesn't have Item --}}
+        @else
 
-    <div>
-        <h2>No items in Cart now !!</h2>
-        <div class="spacer"></div>
-        <a class="button-primary" href="{{ route('shop.index') }}">Go back and Shopping</a>
-        <div class="spacer"></div>
-    </div>
+        <div>
+            <h2>No items in Cart now !!</h2>
+            <div class="spacer"></div>
+            <a class="button-primary" href="{{ route('shop.index') }}">Go back and Shopping</a>
+            <div class="spacer"></div>
+        </div>
 
-    @endif
+        @endif
 
-    @if (Cart::instance('wishList')->count() > 0)
+        @if (Cart::instance('wishList')->count() > 0)
 
-    <h2>{{ Cart::instance('wishList')->count() }} item(s) Saved For Later</h2>
+        <h2>{{ Cart::instance('wishList')->count() }} item(s) Saved For Later</h2>
 
-    <div class="saved-for-later cart-table">
+        <div class="saved-for-later cart-table">
 
-        @foreach (Cart::instance('wishList')->content() as $wishItem )
+            @foreach (Cart::instance('wishList')->content() as $wishItem )
 
-        <div class="cart-table-row">
-            <div class="cart-table-row-left">
-                <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
-                    <img src="{{ productImage($wishItem->image) }} " alt="item"
-                        class="cart-table-img">
-                </a>
-                <div class="cart-item-details">
-                    <div class="cart-table-item">
-                        <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
-                            {{ $wishItem->model->name }}
-                        </a>
+            <div class="cart-table-row">
+                <div class="cart-table-row-left">
+                    <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                        <img src="{{ productImage($wishItem->model->image) }} " alt="item" class="cart-table-img">
+                    </a>
+                    <div class="cart-item-details">
+                        <div class="cart-table-item">
+                            <a href=" {{ route('shop.show',$wishItem->model->slug) }} ">
+                                {{ $wishItem->model->name }}
+                            </a>
+                        </div>
+                        <div class="cart-table-description">{{ $wishItem->model->details }}</div>
                     </div>
-                    <div class="cart-table-description">{{ $wishItem->model->details }}</div>
                 </div>
-            </div>
-            <div class="cart-table-row-right">
-                <div class="cart-table-actions">
-                    <form action="{{ route('wishList.destroy',$wishItem->rowId) }}" method="POST">
+                <div class="cart-table-row-right">
+                    <div class="cart-table-actions">
+                        <form action="{{ route('wishList.destroy',$wishItem->rowId) }}" method="POST">
 
-                        @csrf
+                            @csrf
 
-                        @method('DELETE')
+                            @method('DELETE')
 
-                        <button type="submit" class="cart-options">Remove</button>
+                            <button type="submit" class="cart-options">Remove</button>
 
-                    </form>
-                    <form action="{{ route('wishList.moveToCart',$wishItem->rowId) }}" method="POST">
+                        </form>
+                        <form action="{{ route('wishList.moveToCart',$wishItem->rowId) }}" method="POST">
 
-                        @csrf
+                            @csrf
 
-                        <button type="submit" class="cart-options">Add to Cart</button>
+                            <button type="submit" class="cart-options">Add to Cart</button>
 
-                    </form>
+                        </form>
+                    </div>
+
+                    <div>{{ $wishItem->model->setPrice() }}</div>
                 </div>
 
-                <div>{{ $wishItem->model->setPrice() }}</div>
-            </div>
+            </div> <!-- end cart-table-row -->
 
-        </div> <!-- end cart-table-row -->
+            @endforeach
 
-        @endforeach
+        </div> <!-- end wish-list -->
 
-    </div> <!-- end wish-list -->
+        @else
 
-    @else
+        <h2>You have no items in WishList !!</h2>
 
-    <h2>You have no items in WishList !!</h2>
-
-    @endif
+        @endif
 
 
-</div>
+    </div>
 
 </div> <!-- end cart-section -->
 

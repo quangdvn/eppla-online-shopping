@@ -24,15 +24,22 @@
 <body>
     <header class="with-background">
         <div class="top-nav container">
-            <div class="logo">Eppla E-Commerce</div>
+            <div class="top-nav-left">
+                <div class="logo">Eppla</div>
 
-            {{ menu('main','partials.menus.main') }}
+                @include('partials.menus.top-nav-left')
 
+            </div>
+            <div class="top-nav-right">
+
+                @include('partials.menus.top-nav-right')
+
+            </div>
         </div> <!-- end top-nav -->
 
         <div class="hero container">
             <div class="hero-copy">
-                <h1>Eppla</h1>
+                <h1>Eppla E-Commerce</h1>
                 <p>An E-Commerce includes multiple products, categories, a shopping cart and a checkout system with
                     Stripe</p>
                 <div class="hero-buttons">

@@ -27,6 +27,8 @@ Route::post('/cart', 'CartController@store')->name('cart.store');
 
 Route::put('/cart/{id}', 'CartController@update')->name('cart.update');
 
+Route::delete('/cart/empty', 'CartController@destroyAll')->name('cart.destroyall');
+
 Route::delete('/cart/{id}', 'CartController@destroy')->name('cart.destroy');
 
 Route::post('/cart/moveToWishList/{id}', 'CartController@moveToWishList')->name('cart.moveToWishList');
@@ -49,6 +51,16 @@ Route::post('/coupon', 'CouponController@store')->name('coupon.store');
 
 Route::delete('/coupon', 'CouponController@destroy')->name('coupon.destroy');
 
+//* Routes for Voyager
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+//* Routes for Authenticate
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 //* Routes for Testing
 Route::get('/empty', function () {
     Cart::instance('shopping')->destroy();
@@ -58,9 +70,4 @@ Route::get('/empty', function () {
 Route::get('/emptywish', function () {
     Cart::instance('wishList')->destroy();
     session()->forget('coupon');
-});
-
-//* Routes for Voyager
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
 });

@@ -89,6 +89,20 @@ class CartController extends Controller
     }
 
     /**
+     * Clear all Cart.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAll()
+    {
+        Cart::instance('shopping')->destroy();
+
+        session()->forget('coupon');
+
+        return back()->with('success_message', 'Cart has been cleared !!');
+    }
+
+    /**
      * Move to Wish List to buy later
      *
      * @param  int  $id
