@@ -4,14 +4,14 @@
             <div class="logo">
                 <a href="/">Eppla</a>
             </div>
-            @if (!request()->is('checkout'))
+            @if (! (request()->is('checkout') || request()->is('guestcheckout') || request()->is('login')) )
 
             @include('partials.menus.top-nav-left')
 
             @endif
         </div>
         <div class="top-nav-right">
-            @if (!request()->is('checkout'))
+            @if (! (request()->is('checkout') || request()->is('guestcheckout') || request()->is('login')) )
 
             @include('partials.menus.top-nav-right')
 

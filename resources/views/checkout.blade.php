@@ -30,13 +30,31 @@
 
                 <div class="form-group">
                     <label for="email">Email Address</label>
+                    @if (auth()->user())
+
                     <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}"
                         readonly>
+
+                    @else
+
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') ?? '' }}"
+                        required>
+
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
+                    @if (auth()->user())
+
                     <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}"
                         readonly>
+
+                    @else
+
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') ?? '' }}"
+                        required>
+
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
@@ -108,7 +126,8 @@
 
                 <div class="checkout-table-row">
                     <div class="checkout-table-row-left">
-                        <img src="{{ asset("storage/{$readyItem->model->image}") }}" alt="item" class="checkout-table-img">
+                        <img src="{{ asset("storage/{$readyItem->model->image}") }}" alt="item"
+                            class="checkout-table-img">
                         <div class="checkout-item-details">
                             <div class="checkout-table-item">{{ $readyItem->model->name }}</div>
                             <div class="checkout-table-description">{{ $readyItem->model->details }}</div>
