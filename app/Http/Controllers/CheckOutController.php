@@ -11,7 +11,7 @@ class CheckOutController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +23,10 @@ class CheckOutController extends Controller
     {
         if (Cart::instance('shopping')->count() == 0) {
             return redirect()->route('landing-page');
+        }
+
+        if (auth()->user() && request()->is('guestcheckout')) {
+            return redirect()->route('checkout.index');
         }
 
         return view('checkout')->with([

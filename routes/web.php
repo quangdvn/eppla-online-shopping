@@ -39,9 +39,11 @@ Route::delete('/wishList/{id}', 'WishListController@destroy')->name('wishList.de
 Route::post('/wishList/moveToCart/{id}', 'WishListController@moveToCart')->name('wishList.moveToCart');
 
 //* Routes for CheckOut Page
-Route::get('/checkout', 'CheckOutController@index')->name('checkout.index');
+Route::get('/checkout', 'CheckOutController@index')->name('checkout.index')->middleware('auth');
 
 Route::post('/checkout', 'CheckOutController@store')->name('checkout.store');
+
+Route::get('/guestcheckout', 'CheckOutController@index')->name('guestcheckout.index');
 
 //* Routes for Confirmation Page
 Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
