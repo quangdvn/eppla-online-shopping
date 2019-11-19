@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/utils/stripe.js', 'public/js')
     .js('resources/js/utils/ajax.js', 'public/js')
+    .js('resources/js/utils/thumbnail.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/responsive.scss', 'public/css')
     .sourceMaps()

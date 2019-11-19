@@ -8,5 +8,7 @@
     "/css/app.css.map": "/css/app.css.map",
     "/css/responsive.css.map": "/css/responsive.css.map",
     "/js/stripe.js": "/js/stripe.js",
-    "/js/stripe.js.map": "/js/stripe.js.map"
+    "/js/stripe.js.map": "/js/stripe.js.map",
+    "/js/thumbnail.js": "/js/thumbnail.js",
+    "/js/thumbnail.js.map": "/js/thumbnail.js.map"
 }
