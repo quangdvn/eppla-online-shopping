@@ -25,7 +25,8 @@ class ShopController extends Controller
             $products = Product::with('categories')
                         ->whereHas('categories', function ($query) {
                             $query->where('slug', request()->cat);
-                        });
+                        })
+                        ->inRandomOrder();
             $categoryName = optional($categories->where('slug', request()->cat)
                                     ->first())
                                     ->name;
