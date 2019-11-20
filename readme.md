@@ -63,6 +63,8 @@ I have already attach Voyager package in composer.json, to start with Voyager, r
 You can't keep up with my setting for Voyager, since its not allowed to push up Voyager setting on Github,
 So you have to do it on your own :((
 
+PS: I have updated the repo, pls read Step 8 to continue with my Voyager data setting
+
 Feel free to read Voyager docs here: https://voyager-docs.devdojo.com
 
 #### Step 7: Create your own database
@@ -74,8 +76,14 @@ Please see all 3 folders: Migration, Factory and Seed and run these:
     php artisan migrate
     php artisan db:seed
     php artisan serve
+    
+#### Step 8 (Optional): Set up data for Voyager
 
-#### Step 8: Set up Stripe Payment
+I 've created a new Artisan command to seed data for the Voyager database
+
+    php artisan eppla:install
+
+#### Step 9: Set up Stripe Payment
 
 My project uses Stripe (for now) as the main method for customers to check out order
 
