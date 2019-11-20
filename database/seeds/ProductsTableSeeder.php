@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder
         //* Laptops
         for ($i = 1; $i <= 30; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Laptop ' . $i,
                 'slug' => 'laptop-' . $i,
                 'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch, ' . [1, 2, 3][array_rand([1, 2, 3])] . ' TB SSD, 32GB RAM',
@@ -32,6 +33,7 @@ class ProductsTableSeeder extends Seeder
         //* Desktops
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Desktop ' . $i,
                 'slug' => 'desktop-' . $i,
                 'details' => [24, 25, 27][array_rand([24, 25, 27])] . ' inch, ' . [1, 2, 3][array_rand([1, 2, 3])] . ' TB SSD, 32GB RAM',
@@ -45,6 +47,7 @@ class ProductsTableSeeder extends Seeder
         //* Phones
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Phone ' . $i,
                 'slug' => 'phone-' . $i,
                 'details' => [16, 32, 64][array_rand([16, 32, 64])] . 'GB, 5.' . [7, 8, 9][array_rand([7, 8, 9])] . ' inch screen, 4GHz Quad Core',
@@ -58,6 +61,7 @@ class ProductsTableSeeder extends Seeder
         //* Tablets
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Tablet ' . $i,
                 'slug' => 'tablet-' . $i,
                 'details' => [16, 32, 64][array_rand([16, 32, 64])] . 'GB, 5.' . [10, 11, 12][array_rand([10, 11, 12])] . ' inch screen, 4GHz Quad Core',
@@ -71,6 +75,7 @@ class ProductsTableSeeder extends Seeder
         //* TVs
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'TV ' . $i,
                 'slug' => 'tv-' . $i,
                 'details' => [46, 50, 60][array_rand([7, 8, 9])] . ' inch screen, Smart TV, 4K',
@@ -84,6 +89,7 @@ class ProductsTableSeeder extends Seeder
         //* Cameras
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Camera ' . $i,
                 'slug' => 'camera-' . $i,
                 'details' => 'Full Frame DSLR, with 18-55mm kit lens.',
@@ -97,6 +103,7 @@ class ProductsTableSeeder extends Seeder
         //* Appliances
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
+                'seller_id' => rand(1, 3),
                 'name' => 'Appliance ' . $i,
                 'slug' => 'appliance-' . $i,
                 'details' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dolorum!',

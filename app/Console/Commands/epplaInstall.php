@@ -130,6 +130,16 @@ class epplaInstall extends Command
             '--force' => true
         ]);
 
+        $this->call('db:seed', [
+            '--class' => 'SellersTableSeeder',
+            '--force' => true
+        ]);
+
+        $this->call('db:seed', [
+            '--class' => 'ProductsTableSeeder',
+            '--force' => true
+        ]);
+
         //* Successfull installed
         $this->info('Dummy data installed');
     }
