@@ -63,11 +63,13 @@ I have already attach Voyager package in composer.json, to start with Voyager, r
 You can't keep up with my setting for Voyager, since its not allowed to push up Voyager setting on Github,
 So you have to do it on your own :((
 
-PS: I have updated the repo, pls read Step 8 to continue with my Voyager data setting
+PS: I have updated the repo, pls read Step 8 to continue with my Voyager data setting or you can proceed to Step 7 ...
+
+You can either choose step 7 or step 8 to keep up with my work :)
 
 Feel free to read Voyager docs here: https://voyager-docs.devdojo.com
 
-#### Step 7: Create your own database
+#### Step 7 (Optional): Create your own database
 
 I 've already prepared some seed files for a new MySQL Database in 'database' folder
 
@@ -80,6 +82,8 @@ Please see all 3 folders: Migration, Factory and Seed and run these:
 #### Step 8 (Optional): Set up data for Voyager
 
 I 've created a new Artisan command to seed data for the Voyager database
+
+By following this step, you are now having a full-control database with Products, Categories ... and 3 types of User with different roles
 
     php artisan eppla:install
 
@@ -97,7 +101,7 @@ Feel free to contribute to my project since its still very basic though
 
 Remember to create new branch and pull request if u want to develop this site !!!
    
-## Enjoy this project :))
+## Enjoy this project and STAR me if u like :))
 
 
 
