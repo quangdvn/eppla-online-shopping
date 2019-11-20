@@ -91,7 +91,7 @@ By following this step, you are now having a full-control database with Products
 
 My project uses Stripe (for now) as the main method for customers to check out order
 
-Feel free to contact me to be provided with STRIPE_KEY and STRIPE_SECRET
+Feel free to contact me to be provided with needed key for payment process
     
 #### Now you have completed starting up my project, just dive in and enjoy yourself !!!
     
