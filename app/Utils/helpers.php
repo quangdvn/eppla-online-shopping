@@ -19,6 +19,8 @@
         // Get discount value if coupon is applied
         $discount = session()->get('coupon')['discount'] ?? 0;
 
+        $code = session()->get('coupon')['name'] ?? null;
+
         // Get new subtotal after coupon is applied
         $newSubtotal = (Cart::instance('shopping')->subtotal() - $discount);
         if ($newSubtotal < 0) {
@@ -34,6 +36,7 @@
         return collect([
             'taxConst' => $taxConst,
             'discount' => $discount,
+            'code' => $code,
             'newSubtotal' => $newSubtotal,
             'newTax' => $newTax,
             'newTotal' => $newTotal,
@@ -42,7 +45,7 @@
 
     function productImage($path)
     {
-        return $path && file_exists("storage/{$path}") 
+        return $path && file_exists("storage/{$path}")
                 ? asset("storage/{$path}")
                 : asset('img/not-found.jpg');
     }

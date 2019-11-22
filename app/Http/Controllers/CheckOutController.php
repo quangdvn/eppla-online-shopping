@@ -3,12 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckOutController extends Controller
 {
+    protected function storeOrderDetail($request, $error)
+    {
+        //* Insert into orders table after success payment
+        $newOrder = Order::create([
+            'customer_id' => auth()->user() ? auth()->user()->customer->id : null,
+            'billing_email' => $request->email,
+            'billing_name' => $request->name,
+            'billing_address' => $request->address,
+            'billing_city' => $request->city,
+            'billing_province' => $request->province,
+            'billing_postalcode' => $request->postalcode,
+            'billing_phone' => $request->phone,
+            'billing_name_on_card' => $request->name_on_card,
+            'billing_discount' => calculateTotal()->get('discount'),
+            'billing_discount_code' => calculateTotal()->get('code'),
+            'billing_subtotal' => calculateTotal()->get('newSubtotal'),
+            'billing_tax' => calculateTotal()->get('newTax'),
+            'billing_total' => calculateTotal()->get('newTotal'),
+            'error' => $error,
+        ]);
+
+        //* Insert into order_product table after success payment
+        foreach (Cart::instance('shopping')->content() as $cartItem) {
+            OrderProduct::create([
+                'order_id' => $newOrder->id,
+                'product_id' => $cartItem->model->id,
+                'quantity' => $cartItem->qty
+            ]);
+        }
+    }
+
     public function __construct()
     {
         // $this->middleware('auth');
@@ -46,6 +79,7 @@ class CheckOutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
+        //* Temporary create a JSON data to send to Stripe
         $paymentContent = Cart::instance('shopping')
             ->content()
             ->map(function ($item) {
@@ -69,7 +103,11 @@ class CheckOutController extends Controller
                 ]
             ]);
 
-            //* Successful charge
+            //? SUCCESSFUL charge
+
+            $this->storeOrderDetail($request, null);
+
+            //* Clear out the current Cart
             Cart::instance('shopping')->destroy();
 
             session()->forget('coupon');
@@ -78,9 +116,12 @@ class CheckOutController extends Controller
                     ->route('confirmation.index')
                     ->with('success_message', 'Thank you, your payment has been successfully accepted !!');
         } catch (CardErrorException $e) {
+            //! ERROR charge
+            $this->storeOrderDetail($request, $e->getMessage());
+
             return back()
-            ->withInput()
-            ->withErrors("Error! {$e->getMessage()}");
+                    ->withInput()
+                    ->withErrors("Error! {$e->getMessage()}");
         }
     }
 }

@@ -82,7 +82,12 @@ class ProductsController extends VoyagerBaseController
             if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
                 $query = $model->{$dataType->scope}();
             } else {
-                $query = $model::select('*');
+                if (auth()->user()->role_id == 1) {
+                    $query = $model::select('*');
+                } else {
+                    $query = $model::select('*')
+                    ->where('seller_id', '=', auth()->user()->seller->id);
+                }
             }
 
             // Use withTrashed() if model uses SoftDeletes and if toggle is selected

@@ -32,6 +32,22 @@ class DataRowsTableSeederCustom extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($productDataType, 'seller_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type' => 'hidden',
+                'display_name' => 'Seller_id',
+                'required' => 1,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
+                'details' => '',
+                'order' => 2,
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($productDataType, 'name');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -44,7 +60,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":"max:100"}}',
-                'order' => 2,
+                'order' => 3,
             ])->save();
         }
 
@@ -60,7 +76,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 3,
+                'order' => 4,
             ])->save();
         }
 
@@ -76,7 +92,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 4,
+                'order' => 5,
             ])->save();
         }
 
@@ -92,7 +108,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":"required|regex:/^\\d*(\\.\\d{1,2})?$/"}}',
-                'order' => 5,
+                'order' => 6,
             ])->save();
         }
 
@@ -108,7 +124,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 6,
+                'order' => 7,
             ])->save();
         }
 
@@ -124,7 +140,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"on":"Yes","off":"No"}',
-                'order' => 7,
+                'order' => 8,
             ])->save();
         }
 
@@ -140,7 +156,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"quality":"70%","thumbnails":[{"name":"medium","scale":"50%"},{"name":"small","scale":"25%"},{"name":"cropped","crop":{"width":"300","height":"250"}}]}',
-                'order' => 8,
+                'order' => 9,
             ])->save();
         }
 
@@ -156,7 +172,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 9,
+                'order' => 10,
             ])->save();
         }
 
@@ -172,7 +188,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 10,
+                'order' => 11,
             ])->save();
         }
 
@@ -188,7 +204,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 11,
+                'order' => 12,
             ])->save();
         }
 
@@ -261,7 +277,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'order' => 4,
             ])->save();
         }
-        
+
         $dataRow = $this->dataRow($couponDataType, 'percent_off');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -465,7 +481,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'order' => 4,
             ])->save();
         }
-        
+
         $dataRow = $this->dataRow($categoryProductDataType, 'updated_at');
         if (!$dataRow->exists) {
             $dataRow->fill([
