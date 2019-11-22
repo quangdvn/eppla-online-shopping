@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
+use App\Mail\OrderPlaced;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Mail;
 
 class CheckOutController extends Controller
 {
@@ -40,11 +42,8 @@ class CheckOutController extends Controller
                 'quantity' => $cartItem->qty
             ]);
         }
-    }
 
-    public function __construct()
-    {
-        // $this->middleware('auth');
+        return $newOrder;
     }
 
     /**
@@ -54,6 +53,12 @@ class CheckOutController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            if(redirectNotUser(auth()->user())) {
+                return redirect('/admin');
+            }
+        }
+
         if (Cart::instance('shopping')->count() == 0) {
             return redirect()->route('landing-page');
         }
@@ -105,7 +110,10 @@ class CheckOutController extends Controller
 
             //? SUCCESSFUL charge
 
-            $this->storeOrderDetail($request, null);
+            $newOrder = $this->storeOrderDetail($request, null);
+
+            // //* Send a transactional mail to customer
+            Mail::send(new OrderPlaced($newOrder));
 
             //* Clear out the current Cart
             Cart::instance('shopping')->destroy();
