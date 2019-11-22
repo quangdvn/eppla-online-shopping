@@ -15,7 +15,7 @@ class UsersTableSeederCustom extends Seeder
         
         User::create([
             'name'           => 'Seller 1',
-            'email'          => 'seller1@admin.com',
+            'email'          => 'seller1@seller.com',
             'password'       => bcrypt('password'),
             'remember_token' => str_random(60),
             'role_id'        => $role->id,
@@ -23,7 +23,7 @@ class UsersTableSeederCustom extends Seeder
 
         User::create([
             'name'           => 'Seller 2',
-            'email'          => 'seller2@admin.com',
+            'email'          => 'seller2@seller.com',
             'password'       => bcrypt('password'),
             'remember_token' => str_random(60),
             'role_id'        => $role->id,
@@ -31,8 +31,16 @@ class UsersTableSeederCustom extends Seeder
 
         User::create([
             'name'           => 'Seller 3',
-            'email'          => 'seller3@admin.com',
+            'email'          => 'seller3@seller.com',
             'password'       => bcrypt('password'),
+            'remember_token' => str_random(60),
+            'role_id'        => $role->id,
+        ]);
+
+        User::create([
+            'name'           => 'User 1',
+            'email'          => 'user1@user.com',
+            'password'       => bcrypt('z1x2c3v4'),
             'remember_token' => str_random(60),
             'role_id'        => $role->id,
         ]);
