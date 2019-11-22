@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Permission;
+
 class PermissionsTableSeederCustom extends Seeder
 {
     /**
@@ -12,5 +13,6 @@ class PermissionsTableSeederCustom extends Seeder
         Permission::generateFor('coupons');
         Permission::generateFor('category');
         Permission::generateFor('category-product');
+        Permission::generateFor('orders');
     }
 }
