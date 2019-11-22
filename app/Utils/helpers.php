@@ -1,6 +1,10 @@
 <?php
     //* Built-in helper functions through-out the Project
-    function presentPrice($price)
+
+use Illuminate\Support\Facades\Redirect;
+use TCG\Voyager\Facades\Voyager;
+
+function presentPrice($price)
     {
         return '$' . number_format($price / 100, 2);
     }
@@ -48,4 +52,10 @@
         return $path && file_exists("storage/{$path}")
                 ? asset("storage/{$path}")
                 : asset('img/not-found.jpg');
+    }
+
+    function redirectNotUser($user) {
+        if($user->role_id != 2) {
+            return true;
+        }
     }

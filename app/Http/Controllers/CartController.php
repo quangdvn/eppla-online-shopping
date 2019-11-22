@@ -16,6 +16,12 @@ class CartController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            if(redirectNotUser(auth()->user())) {
+                return redirect('/admin');
+            }
+        }
+        
         $mightLikeProducts = Product::mightLike()->get();
 
         return view('cart')->with([

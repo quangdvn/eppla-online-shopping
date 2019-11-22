@@ -16,6 +16,12 @@ class ShopController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            if(redirectNotUser(auth()->user())) {
+                return redirect('/admin');
+            }
+        }
+
         $pagination = 9;
         $categories = Category::all();
 

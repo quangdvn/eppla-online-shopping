@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Role;
 use TCG\Voyager\Models\User;
@@ -40,12 +42,16 @@ class UsersTableSeederCustom extends Seeder
             'role_id' => $sellerRole->id,
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => 'User 1',
             'email' => 'user1@user.com',
             'password' => bcrypt('z1x2c3v4'),
             'remember_token' => str_random(60),
             'role_id' => $userRole->id,
+        ]);
+
+        Customer::create([
+            'user_id' => $user->id
         ]);
     }
 }
