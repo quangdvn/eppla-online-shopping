@@ -7,13 +7,13 @@
 
 @section('content')
 
-<div class="breadcrumbs">
-    <div class="container">
-        <a href="{{ route('landing-page') }}">Home</a>
-        <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <a href="{{ route('shop.index') }}">Shop</a>
-    </div>
-</div> <!-- end breadcrumbs -->
+@component('components.breadcrumbs')
+
+<a href="/">Home</a>
+<i class="fa fa-chevron-right breadcrumb-separator"></i>
+<span>Shop</span>
+
+@endcomponent
 
 <div class="products-section container">
     <div class="sidebar">
