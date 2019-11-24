@@ -20,6 +20,8 @@ Route::get('/shop', 'ShopController@index')->name('shop.index');
 
 Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
+Route::get('/search', 'ShopController@search')->name('shop.search');
+
 //* Routes for Cart Page
 Route::get('/cart', 'CartController@index')->name('cart.index');
 
@@ -61,7 +63,10 @@ Route::group(['prefix' => 'admin'], function () {
 //* Routes for Authenticate
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+//* Routes for Searching
+
 
 //* Routes for Testing
 Route::get('/empty', function () {

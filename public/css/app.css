@@ -12437,5 +12437,22 @@ h1.checkout-heading {
   margin-bottom: 10px;
 }
 
+.search-results-container {
+  min-height: 500px;
+  margin: 20px auto;
+}
+
+.search-results-container a {
+  color: darkblue;
+}
+
+.search-results-container a:hover {
+  text-decoration: underline;
+}
+
+.search-results-count {
+  margin-bottom: 20px;
+}
+
 
 /*# sourceMappingURL=app.css.map*/
