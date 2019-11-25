@@ -354,7 +354,7 @@ class ProductsController extends VoyagerBaseController
 
         $allCategories = Category::all();
 
-        $categoriesForProduct = collect([]);
+        $categoriesForProduct = collect([$allCategories]);
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
     }
@@ -374,6 +374,8 @@ class ProductsController extends VoyagerBaseController
 
         // Check permission
         $this->authorize('add', app($dataType->model_name));
+
+        $request->request->add(['seller_id' => auth()->user()->seller->id]);
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();

@@ -4,7 +4,7 @@
             {{ $slot }}
         </div>
         <div>
-            @include('partials.search')
+            @include('partials.algolia-auto-complete')
         </div>
     </div>
 </div> <!-- end breadcrumbs -->
