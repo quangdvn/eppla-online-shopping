@@ -8,13 +8,13 @@
 
 @section('content')
 
-<div class="breadcrumbs">
-    <div class="container">
-        <a href="/">Home</a>
-        <i class="fa fa-chevron-right breadcrumb-separator"></i>
-        <span>Shopping Cart</span>
-    </div>
-</div> <!-- end breadcrumbs -->
+@component('components.breadcrumbs')
+
+<a href="/">Home</a>
+<i class="fa fa-chevron-right breadcrumb-separator"></i>
+
+<span>Shopping Cart</span>
+@endcomponent
 
 <div class="cart-section container">
     <div>
@@ -248,9 +248,23 @@
 
 @section('extra-js')
 
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
+
 {{-- Load Axios to file --}}
 <script src="{{ asset('js/app.js')}}"></script>
 
 <script src="{{ asset('js/ajax.js') }}"></script>
 
 @endsection
+
+
+
+
+
+
+

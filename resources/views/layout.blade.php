@@ -11,7 +11,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link href="/img/favicon.ico" rel="SHORTCUT ICON" />
+    <link href="/favicon.ico" rel="SHORTCUT ICON" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400,700" rel="stylesheet">

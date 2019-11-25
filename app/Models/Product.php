@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     use SearchableTrait;
+    use Searchable;
+
+    protected $fillable = ['seller_id'];
 
     /**
     * Searchable rules.
