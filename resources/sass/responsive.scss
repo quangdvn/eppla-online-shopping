@@ -143,6 +143,15 @@
         }
     }
 
+    .search-results-container-algolia {
+        grid-template-columns: 1fr;
+    }
+
+    .ais-RefinementList-count {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
     .might-like-product {
         width: 60%;
         justify-content: center;

@@ -43,6 +43,20 @@ class Product extends Model
         return $this->belongsTo(Seller::class);
     }
 
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $extraFields = [
+            'categories' => $this->categories->pluck('name')->toArray(),
+        ];
+        return array_merge($array, $extraFields);
+    }
+
     public function setPrice()
     {
         return '$' . number_format($this->price / 100, 2);
