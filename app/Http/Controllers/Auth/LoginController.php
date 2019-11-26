@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,6 +37,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // // override logout so cart contents remain:
+    // public function logout(Request $request)
+    // {
+    //     $cart = collect(session()->get('cart'));
+    //     $destination = \Auth::logout();
+    //     if (!config('cart.destroy_on_logout')) {
+    //         $cart->each(function ($rows, $identifier) {
+    //             session()->put('cart.' . $identifier, $rows);
+    //         });
+    //     }
+    //     return redirect()->to($destination);
+    // }
 
     /**
     * Show the application's login form.

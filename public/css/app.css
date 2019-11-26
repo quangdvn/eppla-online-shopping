@@ -12585,6 +12585,18 @@ h1.checkout-heading {
   margin-top: 10px;
 }
 
+.ais-Hits-item {
+  -webkit-transition: -webkit-transform 0.7s;
+  transition: -webkit-transform 0.7s;
+  transition: transform 0.7s;
+  transition: transform 0.7s, -webkit-transform 0.7s;
+}
+
+.ais-Hits-item:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 .ais-Hits-item .result-details {
   color: #919191;
 }

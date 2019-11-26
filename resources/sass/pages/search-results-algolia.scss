@@ -13,6 +13,12 @@
 }
 
 .ais-Hits-item {
+    transition: transform 0.7s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
     .result-details {
         color: $text-color-light;
     }

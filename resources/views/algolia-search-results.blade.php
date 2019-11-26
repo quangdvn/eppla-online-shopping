@@ -28,32 +28,7 @@
 </div>
 
 <div class="container">
-    <div class="search-results-container-algolia my-4">
-        <div class="left">
-            <h2>Search Results</h2>
-            <div id="searchbox">
-
-            </div>
-            <div id="stats">
-
-            </div>
-            <br>
-            <h2>Categories</h2>
-            <div id="refinement-list">
-
-            </div>
-        </div>
-
-        <div class="right">
-            <div id="hits">
-
-            </div>
-            <div id="pagination">
-
-            </div>
-        </div>
-
-    </div> <!-- end search-section -->
+    <algolia-instant-search></algolia-instant-search>
 </div>
 
 @endsection
@@ -69,8 +44,10 @@
 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js"
     integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
 
-<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
-<script src="{{ asset('js/algoliaInstantSearch.js') }}"></script>
+{{-- <script src="{{ asset('js/algoliaAutoComplete.js') }}"></script> --}}
+
+{{-- <script src="{{ asset('js/algoliaInstantSearch.js') }}"></script> --}}
 
 @endsection

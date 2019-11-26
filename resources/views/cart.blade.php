@@ -249,7 +249,6 @@
 @section('extra-js')
 
 {{-- Load Axios to file --}}
-<script src="{{ asset('js/app.js')}}"></script>
 
 <script src="{{ asset('js/ajax.js') }}"></script>
 
@@ -259,6 +258,6 @@
 
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
+<script src="{{ asset('js/app.js')}}"></script>
 
 @endsection
