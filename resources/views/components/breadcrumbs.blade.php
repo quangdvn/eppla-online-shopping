@@ -4,7 +4,8 @@
             {{ $slot }}
         </div>
         <div>
-            @include('partials.algolia-auto-complete')
+            <algolia-auto-complete app-id="VGYGZLD5IE" api-key="08ef944b22bafb7eda508b643fe26518" index-name="products"
+                placeholder="Quick search here ..."></algolia-auto-complete>
         </div>
     </div>
 </div> <!-- end breadcrumbs -->

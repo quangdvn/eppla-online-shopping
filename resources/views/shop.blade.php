@@ -91,6 +91,7 @@
 
 <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 
 @endsection

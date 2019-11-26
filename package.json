@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "dotenv": "^8.2.0"
+        "algoliasearch": "^3.35.1",
+        "dotenv": "^8.2.0",
+        "vue-instantsearch": "^2.6.0"
     }
 }
