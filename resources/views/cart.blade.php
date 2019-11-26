@@ -30,7 +30,7 @@
                 @csrf
 
                 @method('DELETE')
-                
+
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-trash fa-fw"></i>Clear Your Cart
                 </button>
@@ -248,23 +248,17 @@
 
 @section('extra-js')
 
-<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
-<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-
-<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
-
 {{-- Load Axios to file --}}
 <script src="{{ asset('js/app.js')}}"></script>
 
 <script src="{{ asset('js/ajax.js') }}"></script>
 
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.35.1/dist/algoliasearchLite.min.js"
+    integrity="sha256-5rOQwvvJdM9oDYQYCGzaJuuTy6SUALjma3OtzEGyJM0=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<script src="{{ asset('js/algoliaAutoComplete.js') }}"></script>
+
 @endsection
-
-
-
-
-
-
-

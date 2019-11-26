@@ -1,0 +1,34 @@
+.search-results-container-algolia {
+    min-height: 400px;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+
+    .left {
+        margin-right: 20px;
+    }
+}
+
+#pagination {
+    margin-top: 10px;
+}
+
+.ais-Hits-item {
+    .result-details {
+        color: $text-color-light;
+    }
+
+    .result-title {
+        mark {
+            background: $lightblue;
+        }
+    }
+}
+
+.ais-RefinementList-label {
+    color: $text-color !important;
+}
+
+.ais-RefinementList-count {
+    color: $text-color !important;
+    background: rgba(35, 100, 141, 0.2) !important;
+}

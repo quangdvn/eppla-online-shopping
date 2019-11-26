@@ -22,6 +22,8 @@ Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
 Route::get('/search', 'ShopController@search')->name('shop.search');
 
+Route::get('/algoliasearch', 'ShopController@algoliaSearch')->name('shop.algoliaSearch');
+
 //* Routes for Cart Page
 Route::get('/cart', 'CartController@index')->name('cart.index');
 

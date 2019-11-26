@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class epplaInstall extends Command
+class EpplaInstall extends Command
 {
     /**
      * The name and signature of the console command.
@@ -138,6 +138,13 @@ class epplaInstall extends Command
         $this->call('db:seed', [
             '--class' => 'ProductsTableSeeder',
             '--force' => true
+        ]);
+
+        $this->call('scout:clear', [
+            'model' => 'App\\Models\\Product',
+        ]);
+        $this->call('scout:import', [
+            'model' => 'App\\Models\\Product',
         ]);
 
         //* Successfull installed

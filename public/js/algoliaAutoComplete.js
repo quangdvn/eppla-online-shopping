@@ -94,11 +94,12 @@
 /***/ (function(module, exports) {
 
 (function () {
-  var client = algoliasearch("VGYGZLD5IE", "08ef944b22bafb7eda508b643fe26518");
-  var index = client.initIndex("products"); //initialize autocomplete on search input (ID selector must match)
+  var enterPressed = false;
+  var searchClient = algoliasearch("VGYGZLD5IE", "08ef944b22bafb7eda508b643fe26518");
+  var index = searchClient.initIndex("products"); //initialize autocomplete on search input (ID selector must match)
 
   autocomplete("#aa-search-input", {
-    hint: false
+    hint: true
   }, {
     source: autocomplete.sources.hits(index, {
       hitsPerPage: 10
@@ -116,8 +117,15 @@
         return "Sorry, we did not find any results for ".concat(result.query);
       }
     }
-  }).on("autocomplete:selected", function (event, suggestion, dataset) {
+  } //* Go direct to the detail page
+  ).on("autocomplete:selected", function (event, suggestion, dataset) {
     window.location.href = window.location.origin + "/shop/" + suggestion.slug;
+    enterPressed = true; //* Go to the search result page
+  }).on('keyup', function (event) {
+    if (event.keyCode == 13 && !enterPressed) {
+      var queryString = document.getElementById('aa-search-input').value;
+      window.location.href = window.location.origin + '/algoliasearch?query=' + queryString;
+    }
   });
 })();
 

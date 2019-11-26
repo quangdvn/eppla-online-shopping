@@ -1,13 +1,14 @@
 (function() {
-    const client = algoliasearch(
+    let enterPressed = false;
+    const searchClient = algoliasearch(
         "VGYGZLD5IE",
         "08ef944b22bafb7eda508b643fe26518"
     );
-    const index = client.initIndex("products");
+    const index = searchClient.initIndex("products");
     //initialize autocomplete on search input (ID selector must match)
     autocomplete(
         "#aa-search-input",
-        { hint: false },
+        { hint: true },
         {
             source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
             //value to be displayed in input control after user's suggestion selection
@@ -39,8 +40,17 @@
                 }
             }
         }
+
+        //* Go direct to the detail page
     ).on("autocomplete:selected", function(event, suggestion, dataset) {
-        window.location.href =
-            window.location.origin + "/shop/" + suggestion.slug;
+        window.location.href = window.location.origin + "/shop/" + suggestion.slug;
+        enterPressed = true;
+
+        //* Go to the search result page
+    }).on('keyup', (event) => {
+        if (event.keyCode == 13 && !enterPressed) {
+            let queryString = document.getElementById('aa-search-input').value
+            window.location.href = window.location.origin + '/algoliasearch?query=' + queryString;
+        }
     });
 })();
