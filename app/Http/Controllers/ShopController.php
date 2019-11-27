@@ -103,8 +103,13 @@ class ShopController extends Controller
         return view('search-results', compact('searchProducts'));
     }
 
-    public function algoliaSearch(Request $request)
+    public function algoliaSearch()
     {
+        if (auth()->user()) {
+            if (redirectNotUser(auth()->user())) {
+                return redirect('/admin');
+            }
+        }
 
         return view('algolia-search-results');
     }

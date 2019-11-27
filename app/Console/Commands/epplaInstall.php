@@ -70,10 +70,14 @@ class EpplaInstall extends Command
         File::copyDirectory(public_path('img/users'), public_path('storage/users'));
 
         //* Migrate and Seed Voyage data
-        $this->call('migrate:fresh', [
-            '--seed' => true,
-            '--force' => true
-        ]);
+        try {
+            $this->call('migrate:fresh', [
+                '--seed' => true,
+                '--force' => true,
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Your products table is NOT seeded correctly. If you are not using Algolia, remove Searchable trait from App\Models\Product');
+        }
 
         $this->call('db:seed', [
             '--class' => 'VoyagerDatabaseSeeder',
@@ -140,12 +144,16 @@ class EpplaInstall extends Command
             '--force' => true
         ]);
 
-        $this->call('scout:clear', [
-            'model' => 'App\\Models\\Product',
-        ]);
-        $this->call('scout:import', [
-            'model' => 'App\\Models\\Product',
-        ]);
+        try {
+            $this->call('scout:clear', [
+                'model' => 'App\\Models\\Product',
+            ]);
+            $this->call('scout:import', [
+                'model' => 'App\\Models\\Product',
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Check your .env file.');
+        }
 
         //* Successfull installed
         $this->info('Dummy data installed');

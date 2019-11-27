@@ -1,13 +1,10 @@
 <?php
     //* Built-in helper functions through-out the Project
 
-use Illuminate\Support\Facades\Redirect;
-use TCG\Voyager\Facades\Voyager;
-
 function presentPrice($price)
-    {
-        return '$' . number_format($price / 100, 2);
-    }
+{
+    return '$' . number_format($price / 100, 2);
+}
 
     function setActive($queryString, $contentSlug, $output = 'active')
     {
@@ -54,8 +51,9 @@ function presentPrice($price)
                 : asset('img/not-found.jpg');
     }
 
-    function redirectNotUser($user) {
-        if($user->role_id != 2) {
+    function redirectNotUser($user)
+    {
+        if ($user->role_id != 2) {
             return true;
         }
     }

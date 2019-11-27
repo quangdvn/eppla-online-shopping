@@ -6,7 +6,6 @@ use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class OrderPlaced extends Mailable
 {
@@ -35,7 +34,7 @@ class OrderPlaced extends Mailable
         $toName = $this->order->billing_name_on_card;
         $orderNumb = $this->order->id;
 
-        return $this->to($toEmail,$toName)
+        return $this->to($toEmail, $toName)
                     ->subject("Order number #{$orderNumb} from Eppla")
                     ->markdown('emails.order.placed');
     }
