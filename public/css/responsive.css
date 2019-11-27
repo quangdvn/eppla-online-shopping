@@ -163,6 +163,17 @@
     margin-right: 10px;
   }
 
+  .auth-pages {
+    margin: 50px auto;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .auth-pages .auth-right {
+    border-left: none;
+    padding-left: 20px;
+  }
+
   .might-like-product {
     width: 60%;
     -webkit-box-pack: center;

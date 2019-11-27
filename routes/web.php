@@ -65,11 +65,6 @@ Route::group(['prefix' => 'admin'], function () {
 //* Routes for Authenticate
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-
-//* Routes for Searching
-
-
 //* Routes for Testing
 Route::get('/empty', function () {
     Cart::instance('shopping')->destroy();

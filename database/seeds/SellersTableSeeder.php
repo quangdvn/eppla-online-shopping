@@ -15,14 +15,13 @@ class SellersTableSeeder extends Seeder
         Seller::create([
             'user_id' => 2
         ]);
-        
+
         Seller::create([
             'user_id' => 3
         ]);
-        
+
         Seller::create([
             'user_id' => 4
         ]);
-        
     }
 }
