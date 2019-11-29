@@ -43,6 +43,7 @@
     <div class="product-section-information">
         <h1 class="product-section-title">{{$product->name}}</h1>
         <div class="product-section-subtitle">{{$product->details}}</div>
+        <div>{!! $stockStatus !!}</div>
         <div class="product-section-price">{{$product->setPrice()}}</div>
         <p>
             {!! $product->description !!}
@@ -58,16 +59,25 @@
             <i class="fa fa-arrow-right fa-fw"></i> See your Cart
         </a>
 
+        @elseif ($product->quantity == 0)
+
+        {{-- <form action="{{ route('cart.moveToWishList', $product->rowId) }}" method="POST">
+
+            @csrf --}}
+
+            <button type="submit" class="button button-yellow">
+                <i class="fa fa-heart fa-lg fa-fw"></i>
+            </button>
+
+        {{-- </form> --}}
+
+
         @else
 
-        <form action="{{ route('cart.store') }}" method="POST">
+        <form action="{{ route('cart.store', $product) }}" method="POST">
 
             @csrf
-
-            <input type="hidden" name="id" value="{{ $product->id }}">
-            <input type="hidden" name="name" value="{{ $product->name }}">
-            <input type="hidden" name="price" value="{{ $product->price }}">
-
+            
             <button type="submit" class="button button-yellow">
                 <i class="fa fa-cart-plus fa-lg fa-fw"></i> Add to Cart
             </button>

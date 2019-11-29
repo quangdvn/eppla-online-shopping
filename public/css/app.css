@@ -11386,6 +11386,58 @@ h2 {
           align-items: center;
 }
 
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.badge-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: #28a745;
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+.badge-dark {
+  color: #fff;
+  background-color: #343a40;
+}
+
 .button {
   border: 1px solid #212121;
   padding: 12px 40px;
@@ -12237,6 +12289,10 @@ footer .footer-content ul a {
 
 .product-section-information p {
   margin-bottom: 16px;
+}
+
+.product-section-title {
+  margin-bottom: 0;
 }
 
 .product-section-subtitle {

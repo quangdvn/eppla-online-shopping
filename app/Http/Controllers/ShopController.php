@@ -81,9 +81,11 @@ class ShopController extends Controller
             return $cartItem->id == $dupId;
         });
 
+        $stockStatus = getStockStatus($product->quantity);
+
         $mightLikeProducts = Product::where('slug', '!=', $slug)->mightLike()->get();
 
-        return view('detail', compact('product', 'mightLikeProducts', 'duplicateProduct'));
+        return view('detail', compact('product', 'mightLikeProducts', 'duplicateProduct', 'stockStatus'));
     }
 
     public function search(Request $request)

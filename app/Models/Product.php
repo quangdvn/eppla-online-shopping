@@ -11,7 +11,7 @@ class Product extends Model
     use SearchableTrait;
     use Searchable;
 
-    protected $fillable = ['seller_id'];
+    protected $fillable = ['seller_id', 'quantity'];
 
     /**
     * Searchable rules.
@@ -62,6 +62,7 @@ class Product extends Model
         return '$' . number_format($this->price / 100, 2);
     }
 
+    //* Use like Product::mightlike
     public function scopeMightLike($query)
     {
         return $query->inRandomOrder()->take(4);

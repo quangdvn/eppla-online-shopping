@@ -135,6 +135,11 @@ class EpplaInstall extends Command
         ]);
 
         $this->call('db:seed', [
+            '--class' => 'SettingsTableSeederCustom',
+            '--force' => true
+        ]);
+
+        $this->call('db:seed', [
             '--class' => 'SellersTableSeeder',
             '--force' => true
         ]);

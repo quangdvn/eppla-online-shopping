@@ -849,44 +849,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (function () {
-  var className = document.querySelectorAll('.quantity');
+  var className = document.querySelectorAll(".quantity");
   Array.from(className).forEach(function (element) {
-    element.addEventListener('change', function _callee() {
-      var id, _ref, data;
+    element.addEventListener("change", function _callee() {
+      var id, quantity, _ref, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              id = element.getAttribute('data-id');
-              _context.prev = 1;
-              _context.next = 4;
+              id = element.getAttribute("data-id");
+              quantity = element.getAttribute("data-quantity");
+              _context.prev = 2;
+              _context.next = 5;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("cart/".concat(id), {
-                quantity: element.value
+                valueQuantity: element.value,
+                productQuantity: quantity
               }));
 
-            case 4:
+            case 5:
               _ref = _context.sent;
               data = _ref.data;
               console.log(data); //* Refresh back after update cart quantity
 
               window.location.href = "/cart";
-              _context.next = 14;
+              _context.next = 15;
               break;
 
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](1);
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](2);
               console.log(_context.t0); //* Refresh back after update cart quantity
 
               window.location.href = "/cart";
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
         }
-      }, null, null, [[1, 10]]);
+      }, null, null, [[2, 11]]);
     });
   });
 })();

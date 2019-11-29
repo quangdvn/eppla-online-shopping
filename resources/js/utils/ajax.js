@@ -1,23 +1,25 @@
 (function() {
-    const className = document.querySelectorAll('.quantity');
+    const className = document.querySelectorAll(".quantity");
 
     Array.from(className).forEach(element => {
-        element.addEventListener('change', async () => {
-            const id = element.getAttribute('data-id');
+        element.addEventListener("change", async () => {
+            const id = element.getAttribute("data-id");
+            const quantity = element.getAttribute("data-quantity");
             try {
                 const { data } = await axios.put(`cart/${id}`, {
-                    quantity: element.value
+                    valueQuantity: element.value,
+                    productQuantity: quantity
                 });
 
                 console.log(data);
 
                 //* Refresh back after update cart quantity
-                window.location.href = "/cart"
+                window.location.href = "/cart";
             } catch (err) {
                 console.log(err);
-                
+
                 //* Refresh back after update cart quantity
-                window.location.href = "/cart"
+                window.location.href = "/cart";
             }
         });
     });

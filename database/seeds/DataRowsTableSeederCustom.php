@@ -128,6 +128,22 @@ class DataRowsTableSeederCustom extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($productDataType, 'quantity');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type' => 'number',
+                'display_name' => 'Quantity',
+                'required' => 1,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '',
+                'order' => 8,
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($productDataType, 'featured');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -140,7 +156,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"on":"Yes","off":"No"}',
-                'order' => 8,
+                'order' => 9,
             ])->save();
         }
 
@@ -156,7 +172,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"quality":"70%","thumbnails":[{"name":"medium","scale":"50%"},{"name":"small","scale":"25%"},{"name":"cropped","crop":{"width":"300","height":"250"}}]}',
-                'order' => 9,
+                'order' => 10,
             ])->save();
         }
 
@@ -172,7 +188,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 10,
+                'order' => 11,
             ])->save();
         }
 
@@ -188,7 +204,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 11,
+                'order' => 12,
             ])->save();
         }
 
@@ -204,7 +220,7 @@ class DataRowsTableSeederCustom extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '',
-                'order' => 12,
+                'order' => 13,
             ])->save();
         }
 
