@@ -862,7 +862,7 @@ __webpack_require__.r(__webpack_exports__);
               quantity = element.getAttribute("data-quantity");
               _context.prev = 2;
               _context.next = 5;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("cart/".concat(id), {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.put("cart/update/".concat(id), {
                 valueQuantity: element.value,
                 productQuantity: quantity
               }));

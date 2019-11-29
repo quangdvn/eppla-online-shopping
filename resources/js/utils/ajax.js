@@ -6,7 +6,7 @@
             const id = element.getAttribute("data-id");
             const quantity = element.getAttribute("data-quantity");
             try {
-                const { data } = await axios.put(`cart/${id}`, {
+                const { data } = await axios.put(`cart/update/${id}`, {
                     valueQuantity: element.value,
                     productQuantity: quantity
                 });

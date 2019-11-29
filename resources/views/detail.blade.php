@@ -63,11 +63,11 @@
 
         {{-- <form action="{{ route('cart.moveToWishList', $product->rowId) }}" method="POST">
 
-            @csrf --}}
+        @csrf --}}
 
-            <button type="submit" class="button button-yellow">
-                <i class="fa fa-heart fa-lg fa-fw"></i>
-            </button>
+        <button type="submit" class="button button-yellow">
+            <i class="fa fa-heart fa-lg fa-fw"></i>
+        </button>
 
         {{-- </form> --}}
 

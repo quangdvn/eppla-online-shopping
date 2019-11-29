@@ -34,10 +34,12 @@ class UpdateCoupon implements ShouldQueue
     public function handle()
     {
         //* Store discount information into session
-        session()->put('coupon', [
-            'name' => $this->coupon->code,
-            'type' => $this->coupon->type,
-            'discount' => $this->coupon->discount(Cart::instance('shopping')->subtotal())
-        ]);
+        if (Cart::currentInstance() === 'default' || Cart::currentInstance() === 'shopping') {
+            session()->put('coupon', [
+                'name' => $this->coupon->code,
+                'type' => $this->coupon->type,
+                'discount' => $this->coupon->discount(Cart::instance('shopping')->subtotal())
+            ]);
+        }
     }
 }
