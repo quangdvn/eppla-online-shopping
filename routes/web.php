@@ -27,7 +27,7 @@ Route::get('/algoliasearch', 'ShopController@algoliaSearch')->name('shop.algolia
 //* Routes for Cart Page
 Route::get('/cart', 'CartController@index')->name('cart.index');
 
-Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
 
 Route::put('/cart/{id}', 'CartController@update')->name('cart.update');
 

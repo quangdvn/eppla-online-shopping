@@ -6,6 +6,7 @@ use App\Http\Requests\CheckoutRequest;
 use App\Mail\OrderPlaced;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -13,8 +14,28 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckOutController extends Controller
 {
+    //* Some Utils function
+    protected function checkAvailable()
+    {
+        foreach (Cart::instance('shopping')->content() as $cartItem) {
+            $product = Product::findOrFail($cartItem->model->id);
+
+            if ($product->quantity <= $cartItem->qty) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected function storeOrderDetail($request, $error)
     {
+        //* Check when there are fewer products available to purchase
+        if ($this->checkAvailable()) {
+            return back()
+            ->withInput()
+            ->withErrors('Sorry! Some of your items are no longer available !!');
+        }
+
         //* Insert into orders table after success payment
         $newOrder = Order::create([
             'customer_id' => auth()->user() ? auth()->user()->customer->id : null,
@@ -44,6 +65,15 @@ class CheckOutController extends Controller
         }
 
         return $newOrder;
+    }
+
+    protected function decreaseInStock()
+    {
+        foreach (Cart::instance('shopping')->content() as $cartItem) {
+            $product = Product::findOrFail($cartItem->model->id);
+
+            $product->update(['quantity' => $product->quantity - $cartItem->qty]);
+        }
     }
 
     /**
@@ -111,6 +141,9 @@ class CheckOutController extends Controller
             //? SUCCESSFUL charge
 
             $newOrder = $this->storeOrderDetail($request, null);
+
+            //* Decrease the number of products in stock
+            $this->decreaseInStock();
 
             // //* Send a transactional mail to customer
             Mail::send(new OrderPlaced($newOrder));

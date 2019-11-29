@@ -57,3 +57,16 @@ function presentPrice($price)
             return true;
         }
     }
+
+    function getStockStatus($quantity)
+    {
+        if ($quantity > setting('site.stock_threshold')) {
+            $stockStatus = '<div class="badge badge-success">In Stock</div>';
+        } elseif ($quantity <= setting('site.stock_threshold') && $quantity != 0) {
+            $stockStatus = '<div class="badge badge-warning">Low In Stock</div>';
+        } else {
+            $stockStatus = '<div class="badge badge-danger">Not Available Now</div>';
+        }
+
+        return $stockStatus;
+    }

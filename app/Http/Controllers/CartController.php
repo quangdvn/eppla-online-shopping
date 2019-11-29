@@ -42,7 +42,7 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
+            'valueQuantity' => 'required|numeric|between:1,5'
         ]);
 
         if ($validator->fails()) {
@@ -51,12 +51,19 @@ class CartController extends Controller
             return response()->json(['success' => 'false'], 400);
         }
 
-        Cart::instance('shopping')->update($id, $request->quantity);
+        // //* Check if user orders more products than in the stock
+        if ($request->valueQuantity > $request->productQuantity) {
+            session()->flash('errors', collect(['Not enough products in stock now !!']));
+
+            return response()->json(['success' => 'false'], 400);
+        }
+
+        Cart::instance('shopping')->update($id, $request->valueQuantity);
 
         session()->flash('success_message', 'Quantity has been updated !!');
 
         return response()->json(['success' => 'true'], 200);
-    }
+    } 
 
     /**
      * Store a newly created resource in storage.
@@ -64,16 +71,16 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Product $product)
     {
-        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem, $rowId) use ($request) {
-            return $cartItem->id === $request->id;
+        $duplicateProduct = Cart::instance('shopping')->search(function ($cartItem, $rowId) use ($product) {
+            return $cartItem->id === $product->id;
         });
         if ($duplicateProduct->isNotEmpty()) {
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::instance('shopping')->add($request->id, $request->name, 1, $request->price)
+        Cart::instance('shopping')->add($product->id, $product->name, 1, $product->price)
                 ->associate('App\Models\Product');
 
         return redirect()
