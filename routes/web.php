@@ -29,7 +29,7 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
 
-Route::put('/cart/{id}', 'CartController@update')->name('cart.update');
+Route::put('/cart/update/{id}', 'CartController@update')->name('cart.update');
 
 Route::delete('/cart/empty', 'CartController@destroyAll')->name('cart.destroyall');
 
