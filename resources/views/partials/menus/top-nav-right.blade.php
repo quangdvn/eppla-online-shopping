@@ -6,6 +6,9 @@
     <li><a href="{{ route('login') }}">Log In</a></li>
 
     @else
+    <li>
+        <a href="{{ route('user.edit') }}">My account</a>
+    </li>
 
     <li>
         <a href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -163,6 +163,18 @@
         }
     }
 
+    .my-profile input {
+        width: 100%;
+    }
+
+    .my-orders .order-header-items {
+        display: block;
+    }
+
+    .my-orders .order-header-items > div {
+        margin-bottom: 14px;
+    }
+
     .might-like-product {
         width: 60%;
         justify-content: center;

@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,14 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/utils/stripe.js', 'public/js')
-    .js('resources/js/utils/ajax.js', 'public/js')
-    .js('resources/js/utils/thumbnail.js', 'public/js')
-    .js('resources/js/utils/algoliaAutoComplete.js', 'public/js')
-    .js('resources/js/utils/algoliaInstantSearch.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/responsive.scss', 'public/css')
+mix.js("resources/js/app.js", "public/js")
+    .js("resources/js/utils/stripe.js", "public/js")
+    .js("resources/js/utils/ajax.js", "public/js")
+    .js("resources/js/utils/thumbnail.js", "public/js")
+    .js("resources/js/utils/algoliaAutoComplete.js", "public/js")
+    .js("resources/js/utils/algoliaInstantSearch.js", "public/js")
+    .sass("resources/sass/app.scss", "public/css")
+    .sass("resources/sass/responsive.scss", "public/css")
     .sourceMaps()
-    .webpackConfig({ devtool: 'source-map' })
-    .disableNotifications();
+    .webpackConfig({ devtool: "source-map" })
+    .disableNotifications()
+    .browserSync("127.0.0.1:8000");
