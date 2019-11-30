@@ -53,9 +53,10 @@ function calculateTotal()
 
 function productImage($path)
 {
-    return $path && file_exists(asset("storage/{$path}"))
-                ? asset("storage/{$path}")
-                : asset('img/not-found.jpg');
+    // return $path && file_exists(asset("storage/{$path}"))
+    //             ? asset("storage/{$path}")
+    //             : asset('img/not-found.jpg');
+    return asset("storage/{$path}");
 }
 
 function redirectNotUser($user)
