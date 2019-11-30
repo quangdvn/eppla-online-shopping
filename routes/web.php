@@ -65,6 +65,17 @@ Route::group(['prefix' => 'admin'], function () {
 //* Routes for Authenticate
 Auth::routes();
 
+//* Routes with auth middleware
+Route::middleware('auth')->group(function () {
+    Route::get('/me', 'UserController@edit')->name('user.edit');
+    
+    Route::put('/me', 'UserController@update')->name('user.update');
+
+    Route::get('/my-orders','OrderController@index')->name('order.index');
+
+    Route::get('/my-orders/{order}','OrderController@show')->name('order.show');
+});
+
 //* Routes for Testing
 Route::get('/empty', function () {
     Cart::instance('shopping')->destroy();
