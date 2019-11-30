@@ -43,8 +43,8 @@
                 <p>An E-Commerce includes multiple products, categories, a shopping cart and a checkout system with
                     Stripe</p>
                 <div class="hero-buttons">
-                    <a href="#" class="button button-white">Button 1</a>
-                    <a href="#" class="button button-white">Button 2</a>
+                    {{-- <a href="#" class="button button-white">Button 1</a>
+                    <a href="#" class="button button-white">Button 2</a> --}}
                 </div>
             </div> <!-- end hero-copy -->
 
@@ -56,14 +56,14 @@
 
     <div class="featured-section">
         <div class="container">
-            <h1 class="text-center">Laravel E-Commerce</h1>
+            <h1 class="text-center">Eppla E-Commerce</h1>
 
             <p class="section-description text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
                 aliquid earum fugiat debitis nam, illum vero, maiores odio exercitationem quaerat. Impedit iure fugit
                 veritatis cumque quo provident doloremque est itaque.</p>
 
             <div class="text-center button-container">
-                <a href="#" class="button">Featured</a>
+                <a href="{{ route('shop.index') }}" class="button">Featured</a>
                 <a href="#" class="button">On Sale</a>
             </div>
 
